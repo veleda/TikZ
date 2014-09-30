@@ -1,1 +1,1 @@
-test
+Dette er notater til et TikZ-kurs jeg holder 6. oktober 2014 ved Institutt for informatikk, Universitetet i Oslo. Er ment til å være en introduksjon til pakken TikZ for de som har brukt en del LaTeX før, men ikke nødvendigvis brukt pakken TikZ.
