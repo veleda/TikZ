@@ -7,18 +7,20 @@
 
 \usepackage{tikz}
 \usepackage{amsmath}
+
 \usetikzlibrary[topaths]
-
-
 \usetikzlibrary{automata}
-
 \usetikzlibrary{graphs}
 
 \newcount\mycount
 
-
+\title{Tegnekurs i TikZ}
+\author{Veronika Heimsbakk \\ veronahe@ulrik.uio.no}
 
 \begin{document}
+
+\maketitle
+\newpage
 
 \section*{Rød-svarte trær}
 
@@ -162,11 +164,11 @@ Her er et eksempel på et tre hvor første, andre, og tredje lag med noder har f
 	 \tikzstyle{selected edge} = [draw,line width=1pt,-,red!100]
 	 \tikzstyle{edge} = [-,black,line width=1pt]
 
-	 \node[vertex] (v1) at (1.25,1.7) 				{1};
-	 \node[vertex] (v2) at (1.5,1.1) 					{2};
+	 \node[vertex] (v1) at (1.25,1.7) 			{1};
+	 \node[vertex] (v2) at (1.5,1.1) 				{2};
 	 \node[selected vertex] (v3) at (0.9,1.5) 		{3};
-	 \node[vertex] (v4) at (1.6,1.5) 					{4};
-	 \node[vertex] (v5) at (1,1.1) 					{5};
+	 \node[vertex] (v4) at (1.6,1.5) 				{4};
+	 \node[vertex] (v5) at (1,1.1) 				{5};
 
 	\draw[edge] (v1)  -- (v2) -- (v3) -- (v4) -- (v5) -- (v1); 
 	\draw[selected edge] (v1) -- (v2);
