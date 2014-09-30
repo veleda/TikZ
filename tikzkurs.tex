@@ -1,6 +1,7 @@
 \documentclass[12pt, a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage[norsk]{babel}
 \usepackage{hyperref}
 \usepackage{fancyvrb}
 
@@ -20,12 +21,14 @@
 \begin{document}
 
 \maketitle
+\tableofcontents
 \newpage
 
-\section*{The Basics}
+%%% BASICS %%%
+\section{The Basics}
 For å kunne bruke pakken TikZ må man først inkludere \texttt{\textbackslash usepackage\{tikz\}} i dokumentet sitt. Da kan vi begynne å lage illustrasjoner ved å lage \texttt{tikzpicture}.
 
-\subsection*{Linjer}
+\subsection{Linjer}
 
 \begin{center}
 \begin{tikzpicture}
@@ -41,7 +44,7 @@ En av de mest brukte TikZ kommandoene er \texttt{\textbackslash draw}. For å te
 \end{tikzpicture}
 \end{Verbatim}
 
-\subsection*{Kvadrat}
+\subsection{Kvadrat}
 
 \noindent Videre kan vi bygge på og lage et kvadrat:
 \begin{center}
@@ -63,7 +66,7 @@ Vi kan også bruke nøkkelordet \texttt{rectangle}, og lage en kortversjon som g
 \end{tikzpicture}
 \end{Verbatim}
 
-\subsection*{Sirkel}
+\subsection{Sirkel}
 \begin{center}
 \begin{tikzpicture}
 	\draw (2,2) circle (1.5cm);
@@ -90,7 +93,7 @@ Den første koordinaten er sirkelens sentrum, og lengden vi oppgir til slutt er 
 \end{tikzpicture}
 \end{Verbatim}
 
-\subsection*{Pynte litt}
+\subsection{Pynte litt}
 For å pynte litt på sirkelen vår, kan vi legge til noen ekstra argumenter til \texttt{\textbackslash draw}-kommandoen. For eksempel slik:
 \begin{center}
 \begin{tikzpicture}
@@ -106,7 +109,7 @@ For å pynte litt på sirkelen vår, kan vi legge til noen ekstra argumenter til
 \end{tikzpicture}
 \end{Verbatim}
 
-\subsection*{Farger}
+\subsection{Farger}
 Vi kan også fylle formene våre ved å bruke kommandoen \texttt{\textbackslash fill}.
 
 \begin{center}
@@ -149,7 +152,8 @@ Vi kan også fylle formene våre ved å bruke kommandoen \texttt{\textbackslash 
 \end{Verbatim}
 \newpage
 
-\section*{Koordinatsystemer}
+%%% KOORDINATER %%%
+\section{Koordinatsystemer}
 Dette eksempelet krever et rutenett, piler, noder og plassering av tall og bokstaver. Vi starter med et rutenett:
 
 \begin{center}
@@ -226,9 +230,61 @@ Denne løkken går over linjene vi allerede har tegnet, og setter en liten strek
 
 \newpage
 
+%%% TRÆR %%%
+\section{Trær}
+
+\begin{center}
+\begin{tikzpicture}[every node/.style={},level 2/.style={sibling distance=20mm},
+				   level 3/.style={sibling distance=10mm}, level distance=30pt]
+\node {S}
+	child { node{A} 
+		child { node {A} 
+			child { node {(} }
+			child { node {)} }
+		}
+		child { node {A} 
+			child { node {(} }
+			child { node {A} 
+				child { node {(} }
+				child { node {)} }
+			}
+			child { node {)} }
+		}
+	};
+\end{tikzpicture}
+\end{center}
+
+\begin{Verbatim}[fontsize=\small, frame=single]
+\begin{tikzpicture}[every node/.style={},
+                    level 2/.style={sibling distance=20mm},
+                    level 3/.style={sibling distance=10mm}, 
+                    level distance=30pt]
+\node {S}
+    child { node{A} 
+        child { node {A} 
+            child { node {(} }
+            child { node {)} }
+        }
+        child { node {A} 
+            child { node {(} }
+            child { node {A} 
+                child { node {(} }
+                child { node {)} }
+            }
+            child { node {)} }
+        }
+    }
+;
+\end{tikzpicture}
+\end{Verbatim}
+
+Vi begynner med å fortelle hvordan vi vil treet skal se ut. Argumentene til \texttt{tikzpicture} sier at vi ikke har noen felles stil for alle nodene, men vi kunne skrevet \texttt{every node/.style=\{red\}} og alle nodene hadde blitt røde.
+
+Videre forteller vi hvor stor avstand vi vil ha mellom søskennoder i de forskjellige lagene, og til slutt hvor stort rom vi vil ha mellom lagene.
 
 \newpage
-\section*{Rød-svarte trær}
+
+\subsection{Rød-svarte trær}
 
 \tikzset{
 	treenode/.style = {align=center, inner sep=0pt},
@@ -275,7 +331,7 @@ Denne løkken går over linjene vi allerede har tegnet, og setter en liten strek
 Starter med å definere \texttt{treenode}, som er felles for alle typer noder. Røde og sorte noder tegnes som \texttt{circle}, hvor sorte noder har \texttt{fill=black} og tekstfarge \texttt{white}, mens røde noder har rødt omriss med \texttt{draw=red}, og tekstfarge \texttt{red}. Null-nodene sier vi skal være sorte \texttt{rectangle}. Tegnes som små kvadrater på 0.3 cm $\times$ 0.3 cm.
 
 \newpage
-\subsection*{Bygge et tre}
+\subsection{Bygge et tre}
 \begin{Verbatim}[fontsize=\small, frame=single]
 \begin{tikzpicture}[->,level/.style={ sibling distance = 2cm, 
                     level distance = 1.5cm }] 
@@ -308,59 +364,10 @@ Så kan man bygge treet ved å legge inn barna til roten, osv.:
 \texttt{\textbackslash node [opt.] \{node value\} \\
 \indent \indent child \{node [opt.] \{node value\} \} ;} 
 
-
-\newpage
-\subsection*{Eksempel med flere lag}
-Her er et eksempel på et tre hvor første, andre, og tredje lag med noder har forskjellige distanser mellom søskennoder.
-
-\begin{center}
-\begin{tikzpicture}[every node/.style={},level 2/.style={sibling distance=20mm},level 3/.style={sibling distance=10mm}, level distance=30pt]
-\node {S}
-	child { node{A} 
-		child { node {A} 
-			child { node {(} }
-			child { node {)} }
-		}
-		child { node {A} 
-			child { node {(} }
-			child { node {A} 
-				child { node {(} }
-				child { node {)} }
-			}
-			child { node {)} }
-		}
-	};
-\end{tikzpicture}
-\end{center}
-
-\begin{Verbatim}[fontsize=\small, frame=single]
-\begin{tikzpicture}[every node/.style={},
-                    level 2/.style={sibling distance=20mm},
-                    level 3/.style={sibling distance=10mm}, 
-                    level distance=30pt]
-\node {S}
-    child { node{A} 
-        child { node {A} 
-            child { node {(} }
-            child { node {)} }
-        }
-        child { node {A} 
-            child { node {(} }
-            child { node {A} 
-                child { node {(} }
-                child { node {)} }
-            }
-            child { node {)} }
-        }
-    }
-;
-\end{tikzpicture}
-\end{Verbatim}
-
 \newpage
 
 %%% GRAFER %%%
-\section*{Grafer}
+\section{Grafer}
 
 \begin{center}
 \begin{tikzpicture}[scale=5]
@@ -423,7 +430,7 @@ Her fortelle vi at \texttt{vertex}er (eller noder), skal være sirkler som er fy
 \end{center}
 
 \newpage
-\subsection*{Tegne grafen} For å plassere nodene rundt om på arket sier man hvor man vil de skal være. For eksempelet på toppen (grafen som har stjerne-form), er TikZ-koden som følger:
+\subsection{Tegne grafen} For å plassere nodene rundt om på arket sier man hvor man vil de skal være. For eksempelet på toppen (grafen som har stjerne-form), er TikZ-koden som følger:
 
 \begin{Verbatim}[fontsize=\small, frame=single]
 \begin{tikzpicture}[scale=5]
@@ -447,7 +454,7 @@ Her fortelle vi at \texttt{vertex}er (eller noder), skal være sirkler som er fy
 \newpage
 
 %%% AUTOMATER %%%
-\section*{Automater}
+\section{Automater}
 
 \begin{center}
 
@@ -492,13 +499,13 @@ Her har automaten følgende egenskaper:
 \end{center}
 Dette forteller oss at automaten skal tegnes med piler (\texttt{->}), nodene skal ha avstand på 3 cm, og linjene en tykkelse på 0,2 mm. Auto stiller teksten \textit{over} linjene, i stedet for \textit{på} linjene.
 
-\subsection*{Automatens tilstander} En automat har tre typer tilstander: starttilstanden, vanlig tilstand(er), og akepterende tilstand(er).
+\subsection{Automatens tilstander} En automat har tre typer tilstander: starttilstanden, vanlig tilstand(er), og akepterende tilstand(er).
 \begin{center}
 \texttt{\textbackslash node[state] (node-name) \{name of state\};}
 \end{center}
 I tillegg til \texttt{[state]}, så kan man ha med opsjonen \texttt{[initial, state]} for starttilstanden, eller \texttt{[state, accepting]} for aksepterende tilstand.
 
-\subsection*{Stien gjennom automaten}
+\subsection{Stien gjennom automaten}
 Stien tegnes gjennom en \texttt{path}. Denne konstrueres på følgende vis:
 \begin{center}
 \texttt{\textbackslash path (from-node) edge [opt.] node \{weight\} (to-node)}.
@@ -546,8 +553,8 @@ Her er en flittig 4-bever. Denne automaten dekker de fleste opsjoner.
 \end{Verbatim}
 
 \newpage
-
-\section*{Gøyale eksempler}
+\section{Resursser}
+\subsection*{Gøyale eksempler}
 \begin{itemize}
 	\item
 	\href{http://www.texample.net/tikz/examples/enderman/}{Enderman}
@@ -559,7 +566,7 @@ Her er en flittig 4-bever. Denne automaten dekker de fleste opsjoner.
 	\href{http://www.texample.net/tikz/examples/india-map/}{India map}
 \end{itemize}
 
-\section*{Lære mer?}
+\subsection*{Lære mer?}
 \begin{itemize}
 	\item
 	\href{https://www.sharelatex.com/blog/2013/09/02/tikz-series-pt4.html}{Introduksjon til Circuitikz}
