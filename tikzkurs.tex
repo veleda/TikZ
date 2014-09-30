@@ -22,6 +22,212 @@
 \maketitle
 \newpage
 
+\section*{The Basics}
+For å kunne bruke pakken TikZ må man først inkludere \texttt{\textbackslash usepackage\{tikz\}} i dokumentet sitt. Da kan vi begynne å lage illustrasjoner ved å lage \texttt{tikzpicture}.
+
+\subsection*{Linjer}
+
+\begin{center}
+\begin{tikzpicture}
+	\draw (0,0) -- (4,0);
+\end{tikzpicture}
+\end{center}
+
+En av de mest brukte TikZ kommandoene er \texttt{\textbackslash draw}. For å tegne ei rett linje sier man hvor man vil tegne \textit{fra} og \textit{til}:
+
+\begin{Verbatim}[fontsize=\small]
+\begin{tikzpicture}
+    \draw (0,0) -- (4,0);
+\end{tikzpicture}
+\end{Verbatim}
+
+\subsection*{Kvadrat}
+
+\noindent Videre kan vi bygge på og lage et kvadrat:
+\begin{center}
+\begin{tikzpicture}
+	\draw (0,0) rectangle (4,4);
+\end{tikzpicture}
+\end{center}
+
+\begin{Verbatim}[fontsize=\small]
+\begin{tikzpicture}
+    \draw (0,0) -- (4,0) -- (4,4) -- (0,4) -- (0,0);
+\end{tikzpicture}
+\end{Verbatim}
+
+Vi kan også bruke nøkkelordet \texttt{rectangle}, og lage en kortversjon som gjør akkurat det samme:
+\begin{Verbatim}[fontsize=\small]
+\begin{tikzpicture}
+    \draw (0,0) rectangle (4,4);
+\end{tikzpicture}
+\end{Verbatim}
+
+\subsection*{Sirkel}
+\begin{center}
+\begin{tikzpicture}
+	\draw (2,2) circle (1.5cm);
+\end{tikzpicture}
+\end{center}
+
+Den første koordinaten er sirkelens sentrum, og lengden vi oppgir til slutt er sirkelens radius.
+\begin{Verbatim}[fontsize=\small]
+\begin{tikzpicture}
+    \draw (2,2) circle (1.5cm);
+\end{tikzpicture}
+\end{Verbatim}
+
+\noindent Ellipser tegnes ved at vi oppgir radiusen i x- og y-retningene:
+\begin{center}
+\begin{tikzpicture}
+	\draw (2,2) ellipse (2cm and 1cm);
+\end{tikzpicture}
+\end{center}
+
+\begin{Verbatim}[fontsize=\small]
+\begin{tikzpicture}
+    \draw (2,2) ellipse (2cm and 1cm);
+\end{tikzpicture}
+\end{Verbatim}
+
+\subsection*{Pynte litt}
+For å pynte litt på sirkelen vår, kan vi legge til noen ekstra argumenter til \texttt{\textbackslash draw}-kommandoen. For eksempel slik:
+\begin{center}
+\begin{tikzpicture}
+	\draw[red, thick, dashed] (2,2) circle (1.5cm);
+	\draw[green, thick] (6,2) circle (1.5cm);
+\end{tikzpicture}
+\end{center}
+
+\begin{Verbatim}[fontsize=\small]
+\begin{tikzpicture}
+    \draw[red, thick, dashed] (2,2) circle (1.5cm);
+    \draw[green, thick] (6,2) circle (1.5cm);
+\end{tikzpicture}
+\end{Verbatim}
+
+\subsection*{Farger}
+Vi kan også fylle formene våre ved å bruke kommandoen \texttt{\textbackslash fill}.
+
+\begin{center}
+\begin{tikzpicture}
+	\fill[red] (0,0) rectangle (3,3);
+\end{tikzpicture}
+\end{center}
+
+\begin{Verbatim}[fontsize=\small]
+\begin{tikzpicture}
+    \fill[red] (0,0) rectangle (3,3);
+\end{tikzpicture}
+\end{Verbatim}
+
+\noindent Om vi ønsker å legge til en kant rundt kvadratet, kan vi bruke kommandoen \texttt{\textbackslash filldraw}. Her fyller vi kvadratet rødt med gjennomsiktighet på 50\% og en tykk sort strek som kant.
+
+\begin{center}
+\begin{tikzpicture}
+	\filldraw[red!50, draw=black, very thick] (0,0) rectangle (3,3);
+\end{tikzpicture}
+\end{center}
+
+\begin{Verbatim}[fontsize=\small]
+\begin{tikzpicture}
+    \filldraw[red!50, draw=black, very thick] (0,0) rectangle (3,3);
+\end{tikzpicture}
+\end{Verbatim}
+
+\noindent Vi har også gradient i TikZ, og det kan se slik ut:
+\begin{center}
+\begin{tikzpicture}
+	\shade[left color=black, right color=red] (0,0) rectangle (3,3);
+\end{tikzpicture}
+\end{center}
+
+\begin{Verbatim}[fontsize=\small]
+\begin{tikzpicture}
+    \shade[left color=black, right color=red] (0,0) rectangle (3,3);
+\end{tikzpicture}
+\end{Verbatim}
+\newpage
+
+\section*{Koordinatsystemer}
+Dette eksempelet krever et rutenett, piler, noder og plassering av tall og bokstaver. Vi starter med et rutenett:
+
+\begin{center}
+\begin{tikzpicture}
+    \draw[step=1cm,gray,very thin] (-1.9,-1.9) grid (5.9,5.9);
+\end{tikzpicture}
+\end{center}
+
+\begin{Verbatim}[fontsize=\small]
+\draw[step=1cm,gray,very thin] (-1.9,-1.9) grid (5.9,5.9);
+\end{Verbatim}
+
+\noindent Videre trenger vi x-aksen og y-aksen. Dette er to linjer med piler i enden.
+\begin{center}
+\begin{tikzpicture}
+    \draw[step=1cm,gray!30,very thin] (-1.9,-1.9) grid (5.9,5.9);
+    \draw[thick, ->] (0,0) -- (4.5,0);
+    \draw[thick, ->] (0,0) -- (0,4.5);
+\end{tikzpicture}
+\end{center}
+
+\begin{Verbatim}[fontsize=\small]
+\draw[thick, ->] (0,0) -- (4.5,0);
+\draw[thick, ->] (0,0) -- (0,4.5);
+\end{Verbatim}
+\newpage
+
+Vi kan legge på tekst (\textit{label}) ved å bruke nøkkelordet \texttt{node}. Nodene i TikZ har et sett med anker-punkter. Så når vi forteller at vi vil ha tekst ved \texttt{anchor = north west} for x-aksen vår, så plasserer den der i henhold til linjen vi allerede har tegnet.
+
+\begin{center}
+\begin{tikzpicture}
+    \draw[step=1cm,gray!30,very thin] (-1.9,-1.9) grid (5.9,5.9);
+    \draw[thick, ->] (0,0) -- (4.5,0) node[anchor=north west] {x axis};
+    \draw[thick, ->] (0,0) -- (0,4.5) node[anchor=south east] {y axis};
+\end{tikzpicture}
+\end{center}
+
+\begin{Verbatim}[fontsize=\small]
+\draw[thick, ->] (0,0) -- (4.5,0) node[anchor=north west] {x axis};
+\draw[thick, ->] (0,0) -- (0,4.5) node[anchor=south east] {y axis};
+\end{Verbatim}
+
+\newpage
+
+\noindent Vi kan fortsette med tallene som skal gå langs aksene ved å bruke løkker:
+
+\begin{center}
+\begin{tikzpicture}
+    \draw[step=1cm,gray!30,very thin] (-1.9,-1.9) grid (5.9,5.9);
+    \draw[thick, ->] (0,0) -- (4.5,0) node[anchor=north west] {x axis};
+    \draw[thick, ->] (0,0) -- (0,4.5) node[anchor=south east] {y axis};
+
+    \foreach \x in {0,1,2,3,4}
+	\draw (\x cm, 2pt) -- (\x cm, -2pt) node[anchor=north] {$\x$};
+    \foreach \y in {0,1,2,3,4}
+	\draw (2pt, \y cm) -- (-2pt, \y cm) node[anchor=east] {$\y$};
+\end{tikzpicture}
+\end{center}
+
+Denne løkken går over linjene vi allerede har tegnet, og setter en liten strek for hver centimeter. Og på dette anker-punktet, så skriver vi også et tall.
+
+\begin{Verbatim}[fontsize=\small, frame=single]
+\begin{tikzpicture}
+ \draw[step=1cm,gray!30,very thin] (-1.9,-1.9) grid (5.9,5.9);
+ \draw[thick, ->] (0,0) -- (4.5,0) node[anchor=north west] {x axis};
+ \draw[thick, ->] (0,0) -- (0,4.5) node[anchor=south east] {y axis};
+
+ \foreach \x in {0,1,2,3,4}
+   \draw (\x cm, 2pt) -- (\x cm, -2pt) node[anchor=north] {$\x$};
+ \foreach \y in {0,1,2,3,4}
+   \draw (2pt, \y cm) -- (-2pt, \y cm) node[anchor=east]  {$\y$};
+\end{tikzpicture}
+\end{Verbatim}
+
+\newpage
+
+
+\newpage
 \section*{Rød-svarte trær}
 
 \tikzset{
@@ -351,6 +557,18 @@ Her er en flittig 4-bever. Denne automaten dekker de fleste opsjoner.
 
 	\item
 	\href{http://www.texample.net/tikz/examples/india-map/}{India map}
+\end{itemize}
+
+\section*{Lære mer?}
+\begin{itemize}
+	\item
+	\href{https://www.sharelatex.com/blog/2013/09/02/tikz-series-pt4.html}{Introduksjon til Circuitikz}
+
+	\item
+	\href{https://www.sharelatex.com/blog/2013/09/04/tikz-series-pt5.html}{Tankekart med TikZ}
+
+	\item
+	\href{https://www.sharelatex.com/blog/2013/08/28/tikz-series-pt2.html}{Generere TikZ-kode fra GeoGebra}
 \end{itemize}
 
 \end{document}
