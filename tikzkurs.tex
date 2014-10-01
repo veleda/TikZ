@@ -26,7 +26,16 @@
 
 %%% BASICS %%%
 \section{The Basics}
-For å kunne bruke pakken TikZ må man først inkludere \texttt{\textbackslash usepackage\{tikz\}} i dokumentet sitt. Da kan vi begynne å lage illustrasjoner ved å lage \texttt{tikzpicture}.
+For å kunne bruke pakken TikZ må man først inkludere \texttt{\textbackslash usepackage\{tikz\}} i dokumentet sitt. 
+
+\subsection{\texttt{tikzpicture}}
+Alle illustrasjoner som skal tegnes ved hjelp av pakken Tikz krever et miljø som heter \texttt{tikzpicture}.
+
+\begin{Verbatim}[fontsize=\small]
+\begin{tikzpicture}
+    <kode her>
+\end{tikzpicture}
+\end{Verbatim}
 
 \subsection{Linjer}
 
@@ -39,9 +48,7 @@ For å kunne bruke pakken TikZ må man først inkludere \texttt{\textbackslash u
 En av de mest brukte TikZ kommandoene er \texttt{\textbackslash draw}. For å tegne ei rett linje sier man hvor man vil tegne \textit{fra} og \textit{til}:
 
 \begin{Verbatim}[fontsize=\small]
-\begin{tikzpicture}
-    \draw (0,0) -- (4,0);
-\end{tikzpicture}
+\draw (0,0) -- (4,0);
 \end{Verbatim}
 
 \subsection{Kvadrat}
@@ -49,21 +56,17 @@ En av de mest brukte TikZ kommandoene er \texttt{\textbackslash draw}. For å te
 \noindent Videre kan vi bygge på og lage et kvadrat:
 \begin{center}
 \begin{tikzpicture}
-	\draw (0,0) rectangle (4,4);
+	\draw (0,0) rectangle (2,2);
 \end{tikzpicture}
 \end{center}
 
 \begin{Verbatim}[fontsize=\small]
-\begin{tikzpicture}
-    \draw (0,0) -- (4,0) -- (4,4) -- (0,4) -- (0,0);
-\end{tikzpicture}
+\draw (0,0) -- (2,0) -- (2,2) -- (0,2) -- (0,0);
 \end{Verbatim}
 
 Vi kan også bruke nøkkelordet \texttt{rectangle}, og lage en kortversjon som gjør akkurat det samme:
 \begin{Verbatim}[fontsize=\small]
-\begin{tikzpicture}
-    \draw (0,0) rectangle (4,4);
-\end{tikzpicture}
+\draw (0,0) rectangle (2,2);
 \end{Verbatim}
 
 \subsection{Sirkel}
@@ -75,9 +78,7 @@ Vi kan også bruke nøkkelordet \texttt{rectangle}, og lage en kortversjon som g
 
 Den første koordinaten er sirkelens sentrum, og lengden vi oppgir til slutt er sirkelens radius.
 \begin{Verbatim}[fontsize=\small]
-\begin{tikzpicture}
-    \draw (2,2) circle (1.5cm);
-\end{tikzpicture}
+\draw (2,2) circle (1.5cm);
 \end{Verbatim}
 
 \noindent Ellipser tegnes ved at vi oppgir radiusen i x- og y-retningene:
@@ -88,9 +89,7 @@ Den første koordinaten er sirkelens sentrum, og lengden vi oppgir til slutt er 
 \end{center}
 
 \begin{Verbatim}[fontsize=\small]
-\begin{tikzpicture}
-    \draw (2,2) ellipse (2cm and 1cm);
-\end{tikzpicture}
+\draw (2,2) ellipse (2cm and 1cm);
 \end{Verbatim}
 
 \subsection{Pynte litt}
@@ -103,12 +102,11 @@ For å pynte litt på sirkelen vår, kan vi legge til noen ekstra argumenter til
 \end{center}
 
 \begin{Verbatim}[fontsize=\small]
-\begin{tikzpicture}
-    \draw[red, thick, dashed] (2,2) circle (1.5cm);
-    \draw[green, thick] (6,2) circle (1.5cm);
-\end{tikzpicture}
+\draw[red, thick, dashed] (2,2) circle (1.5cm);
+\draw[green, thick] (6,2) circle (1.5cm);
 \end{Verbatim}
 
+\newpage
 \subsection{Farger}
 Vi kan også fylle formene våre ved å bruke kommandoen \texttt{\textbackslash fill}.
 
@@ -119,9 +117,7 @@ Vi kan også fylle formene våre ved å bruke kommandoen \texttt{\textbackslash 
 \end{center}
 
 \begin{Verbatim}[fontsize=\small]
-\begin{tikzpicture}
-    \fill[red] (0,0) rectangle (3,3);
-\end{tikzpicture}
+\fill[red] (0,0) rectangle (3,3);
 \end{Verbatim}
 
 \noindent Om vi ønsker å legge til en kant rundt kvadratet, kan vi bruke kommandoen \texttt{\textbackslash filldraw}. Her fyller vi kvadratet rødt med gjennomsiktighet på 50\% og en tykk sort strek som kant.
@@ -133,39 +129,53 @@ Vi kan også fylle formene våre ved å bruke kommandoen \texttt{\textbackslash 
 \end{center}
 
 \begin{Verbatim}[fontsize=\small]
-\begin{tikzpicture}
-    \filldraw[red!50, draw=black, very thick] (0,0) rectangle (3,3);
-\end{tikzpicture}
+\filldraw[red!50, draw=black, very thick] (0,0) rectangle (3,3);
 \end{Verbatim}
 
 \noindent Vi har også gradient i TikZ, og det kan se slik ut:
-\begin{center}
+
+\vspace{15pt}
+
+\begin{minipage}{0.3\textwidth}
 \begin{tikzpicture}
 	\shade[left color=black, right color=red] (0,0) rectangle (3,3);
 \end{tikzpicture}
-\end{center}
+\end{minipage}
+\begin{minipage}{0.3\textwidth}
+\begin{tikzpicture}
+	\shade[top color=black, bottom color=red] (0,0) rectangle (3,3);
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.3\textwidth}
+\begin{tikzpicture}
+	\shade[inner color=black, outer color=red] (0,0) rectangle (3,3);
+\end{tikzpicture}
+\end{minipage}
+\vspace{10pt}
+
 
 \begin{Verbatim}[fontsize=\small]
-\begin{tikzpicture}
-    \shade[left color=black, right color=red] (0,0) rectangle (3,3);
-\end{tikzpicture}
+\shade[left color=black, right color=red]  (0,0) rectangle (3,3);
+\shade[top color=black, bottom color=red]  (0,0) rectangle (3,3);
+\shade[inner color=black, outer color=red] (0,0) rectangle (3,3);
 \end{Verbatim}
 \newpage
 
 %%% KOORDINATER %%%
-\section{Koordinatsystemer}
+\section{Koordinatsystem}
 Dette eksempelet krever et rutenett, piler, noder og plassering av tall og bokstaver. Vi starter med et rutenett:
 
 \begin{center}
 \begin{tikzpicture}
-    \draw[step=1cm,gray,very thin] (-1.9,-1.9) grid (5.9,5.9);
+    \draw[step=1cm,gray,very thin] (-0.9,-0.9) grid (4.9,4.9);
 \end{tikzpicture}
 \end{center}
 
 \begin{Verbatim}[fontsize=\small]
-\draw[step=1cm,gray,very thin] (-1.9,-1.9) grid (5.9,5.9);
+\draw[step=1cm,gray,very thin] (-0.9,-0.9) grid (4.9,4.9);
 \end{Verbatim}
 
+\subsection{Piler/akser}
 \noindent Videre trenger vi x-aksen og y-aksen. Dette er to linjer med piler i enden.
 \begin{center}
 \begin{tikzpicture}
@@ -181,6 +191,7 @@ Dette eksempelet krever et rutenett, piler, noder og plassering av tall og bokst
 \end{Verbatim}
 \newpage
 
+\subsection{Noder}
 Vi kan legge på tekst (\textit{label}) ved å bruke nøkkelordet \texttt{node}. Vi plasserer teksten ved linjene vi har tegnet ved å fortelle noden hvor vi vil ha den.
 
 \begin{center}
@@ -196,10 +207,11 @@ Vi kan legge på tekst (\textit{label}) ved å bruke nøkkelordet \texttt{node}.
 \draw[thick, ->] (0,0) -- (0,4.5) node[above left] {y axis};
 \end{Verbatim}
 
+
 \newpage
 
+\subsection{Løkker}
 \noindent Vi kan fortsette med tallene som skal gå langs aksene ved å bruke løkker:
-
 \begin{center}
 \begin{tikzpicture}
     \draw[step=1cm,gray!80,very thin] (-1.9,-1.9) grid (5.9,5.9);
