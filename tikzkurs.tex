@@ -169,7 +169,7 @@ Dette eksempelet krever et rutenett, piler, noder og plassering av tall og bokst
 \noindent Videre trenger vi x-aksen og y-aksen. Dette er to linjer med piler i enden.
 \begin{center}
 \begin{tikzpicture}
-    \draw[step=1cm,gray!30,very thin] (-1.9,-1.9) grid (5.9,5.9);
+    \draw[step=1cm,gray!80,very thin] (-1.9,-1.9) grid (5.9,5.9);
     \draw[thick, ->] (0,0) -- (4.5,0);
     \draw[thick, ->] (0,0) -- (0,4.5);
 \end{tikzpicture}
@@ -185,15 +185,15 @@ Vi kan legge på tekst (\textit{label}) ved å bruke nøkkelordet \texttt{node}.
 
 \begin{center}
 \begin{tikzpicture}
-    \draw[step=1cm,gray!30,very thin] (-1.9,-1.9) grid (5.9,5.9);
-    \draw[thick, ->] (0,0) -- (4.5,0) node[anchor=north west] {x axis};
-    \draw[thick, ->] (0,0) -- (0,4.5) node[anchor=south east] {y axis};
+    \draw[step=1cm,gray!80,very thin] (-1.9,-1.9) grid (5.9,5.9);
+    \draw[thick, ->] (0,0) -- (4.5,0) node[below right] {x axis};
+    \draw[thick, ->] (0,0) -- (0,4.5) node[above left] {y axis};
 \end{tikzpicture}
 \end{center}
 
 \begin{Verbatim}[fontsize=\small]
-\draw[thick, ->] (0,0) -- (4.5,0) node[anchor=north west] {x axis};
-\draw[thick, ->] (0,0) -- (0,4.5) node[anchor=south east] {y axis};
+\draw[thick, ->] (0,0) -- (4.5,0) node[below right] {x axis};
+\draw[thick, ->] (0,0) -- (0,4.5) node[above left] {y axis};
 \end{Verbatim}
 
 \newpage
@@ -202,14 +202,14 @@ Vi kan legge på tekst (\textit{label}) ved å bruke nøkkelordet \texttt{node}.
 
 \begin{center}
 \begin{tikzpicture}
-    \draw[step=1cm,gray!30,very thin] (-1.9,-1.9) grid (5.9,5.9);
-    \draw[thick, ->] (0,0) -- (4.5,0) node[anchor=north west] {x axis};
-    \draw[thick, ->] (0,0) -- (0,4.5) node[anchor=south east] {y axis};
+    \draw[step=1cm,gray!80,very thin] (-1.9,-1.9) grid (5.9,5.9);
+    \draw[thick, ->] (0,0) -- (4.5,0) node[below right] {x axis};
+    \draw[thick, ->] (0,0) -- (0,4.5) node[above left] {y axis};
 
     \foreach \x in {0,1,2,3,4}
-	\draw (\x cm, 2pt) -- (\x cm, -2pt) node[anchor=north] {$\x$};
+	\draw (\x cm, 2pt) -- (\x cm, -2pt) node[below] {$\x$};
     \foreach \y in {0,1,2,3,4}
-	\draw (2pt, \y cm) -- (-2pt, \y cm) node[anchor=east] {$\y$};
+	\draw (2pt, \y cm) -- (-2pt, \y cm) node[left] {$\y$};
 \end{tikzpicture}
 \end{center}
 
@@ -218,13 +218,13 @@ Denne løkken går over linjene vi allerede har tegnet, og setter en liten strek
 \begin{Verbatim}[fontsize=\small, frame=single]
 \begin{tikzpicture}
  \draw[step=1cm,gray!30,very thin] (-1.9,-1.9) grid (5.9,5.9);
- \draw[thick, ->] (0,0) -- (4.5,0) node[anchor=north west] {x axis};
- \draw[thick, ->] (0,0) -- (0,4.5) node[anchor=south east] {y axis};
+ \draw[thick, ->] (0,0) -- (4.5,0) node[below right] {x axis};
+ \draw[thick, ->] (0,0) -- (0,4.5) node[above left] {y axis};
 
  \foreach \x in {0,1,2,3,4}
-   \draw (\x cm, 2pt) -- (\x cm, -2pt) node[anchor=north] {$\x$};
+   \draw (\x cm, 2pt) -- (\x cm, -2pt) node[below] {$\x$};
  \foreach \y in {0,1,2,3,4}
-   \draw (2pt, \y cm) -- (-2pt, \y cm) node[anchor=east]  {$\y$};
+   \draw (2pt, \y cm) -- (-2pt, \y cm) node[left]  {$\y$};
 \end{tikzpicture}
 \end{Verbatim}
 
