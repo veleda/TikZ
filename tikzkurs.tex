@@ -29,7 +29,7 @@
 For å kunne bruke pakken TikZ må man først inkludere \texttt{\textbackslash usepackage\{tikz\}} i dokumentet sitt. 
 
 \subsection{\texttt{tikzpicture}}
-Alle illustrasjoner som skal tegnes ved hjelp av pakken Tikz krever et miljø som heter \texttt{tikzpicture}.
+Alle illustrasjoner som skal tegnes ved hjelp av pakken TikZ krever et miljø som heter \texttt{tikzpicture}.
 
 \begin{Verbatim}[fontsize=\small]
 \begin{tikzpicture}
@@ -301,6 +301,113 @@ Denne løkken går over linjene vi allerede har tegnet, og setter en liten strek
 
 %%% TRÆR %%%
 \section{Trær}
+Et tre består av en rekke noder. Når vi tegner trær i TikZ starter vi med å definere rot-noden. Legg merke til attributtene vi git \texttt{tikzpicture}. Her sier vi at \texttt{every node} skal ha \textit{stilen} (\texttt{.style}) sirkel med sort strek.
+
+\begin{center}
+\begin{tikzpicture}[every node/.style={circle, draw=black},level 2/.style={sibling distance=20mm},
+				   level 3/.style={sibling distance=10mm}, level distance=30pt]
+\node {1};
+\end{tikzpicture}
+\end{center}
+
+\begin{Verbatim}[fontsize=\small, frame=single]
+\begin{tikzpicture}[every node/.style={circle, draw=black}]
+    \node {1};
+\end{tikzpicture}
+\end{Verbatim}
+
+\subsection{Bygge treet}
+Treet bygger vi ved å legge til barna. Barna skrives på formen:
+\begin{Verbatim}[fontsize=\small]
+child { node[opt.] {value} }
+\end{Verbatim}
+
+\begin{center}
+\begin{tikzpicture}[every node/.style={circle, draw=black}]
+\node {1}
+	child { node {2} 
+		child { node {4} }
+		child { node {5} }
+	}
+	child { node {3} }
+;
+\end{tikzpicture}
+\end{center}
+
+\begin{Verbatim}[fontsize=\small, frame=single]
+\node {1}
+    child { node {2} 
+        child { node {4} }
+        child { node {5} }
+    }
+    child { node {3} }
+;
+\end{Verbatim}
+
+\newpage
+
+\subsection{Justere avstand i trær}
+
+Når vi nå vil bygge videre og legge til tallet 6 under \texttt{child \{node \{3\}\}} vil vi krasje bort i 5. Da trenger vi å justere avstanden mellom søsken-noder.
+
+\vspace{20pt}
+
+\begin{minipage}{0.5\textwidth}
+Vi har: \newline \newline
+\begin{tikzpicture}[every node/.style={circle, draw=black}]
+\node {1}
+	child { node {2} 
+		child { node {4} }
+		child { node {5} }
+	}
+	child { node {3} 
+		child { node {6} }
+	}
+;
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+Vi vil ha: \newline \newline
+\begin{tikzpicture}[every node/.style={circle, draw=black}, 
+				   level 1/.style={sibling distance=20mm}, 
+				   level 2/.style={sibling distance=15mm}]
+\node {1}
+	child { node {2} 
+		child { node {4} }
+		child { node {5} }
+	}
+	child { node {3} 
+		child {node {6} }
+	}
+;
+\end{tikzpicture}
+\end{minipage}
+
+\vspace{20pt}
+
+Da legger vi på at attributt til i listen til \texttt{tikzpicture} som forteller noe om avstanden mellom nodene. 
+
+\begin{Verbatim}[fontsize=\small, frame=single]
+\begin{tikzpicture}[every node/.style={circle, draw=black}, 
+		    level 1/.style={sibling distance=20mm}, 
+		    level 2/.style={sibling distance=15mm}]
+
+\node {1}
+    child { node {2} 
+        child { node {4} }
+        child { node {5} }
+    }
+    child { node {3} 
+        child {node {6} }
+    }
+;
+\end{tikzpicture}
+\end{Verbatim}
+
+Her forteller vi at stilen til nodene på \texttt{level 1} skal være at de har avstand til sine søsken med 20 mm, og 15 mm for \texttt{level 2}. Vi kunne også lagt til attributtet \texttt{level distance} for å få større eller mindre avstand mellom lagene. 
+
+\newpage
+\subsection{Eksempel på et tre med avstander}
 
 \begin{center}
 \begin{tikzpicture}[every node/.style={},level 2/.style={sibling distance=20mm},
@@ -346,10 +453,6 @@ Denne løkken går over linjene vi allerede har tegnet, og setter en liten strek
 ;
 \end{tikzpicture}
 \end{Verbatim}
-
-Vi begynner med å fortelle hvordan vi vil treet skal se ut. Argumentene til \texttt{tikzpicture} sier at vi ikke har noen felles stil for alle nodene, men vi kunne skrevet \texttt{every node/.style=\{red\}} og alle nodene hadde blitt røde.
-
-Videre forteller vi hvor stor avstand vi vil ha mellom søskennoder i de forskjellige lagene, og til slutt hvor stort rom vi vil ha mellom lagene.
 
 \newpage
 
