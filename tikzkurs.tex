@@ -8,7 +8,6 @@
 \usepackage{tgheros}
 \renewcommand*\familydefault{\sfdefault}
 
-
 \usepackage{tikz}
 \usepackage{circuitikz}
 \usepackage{amsmath}
@@ -228,24 +227,8 @@ Vi kan også fylle formene våre ved å bruke kommandoen \texttt{\textbackslash 
 \shade[inner color=black, outer color=red] (0,0) rectangle (2,2);
 \end{Verbatim}
 
-\subsubsection{Blande farger}
-\begin{center}
-\begin{tikzpicture}
-	\fill[blue!50!black] (0,0) rectangle (2,2);
-	\fill[blue!50] (3,0) rectangle (5,2);
-	\fill[blue!30!red!40!yellow] (6,0) rectangle (8,2);
-\end{tikzpicture}
-\end{center}
-
-\begin{Verbatim}[fontsize=\small]
-\fill[blue!50!black] (0,0) rectangle (2,2);
-\fill[blue!50] (3,0) rectangle (5,2);
-\fill[blue!30!red!40!yellow] (6,0) rectangle (8,2);
-\end{Verbatim}
-
-Her blander vi først sort og blå halvt om halvt. Så blander vi blå og hvit halvt om halvt. Og til slutt blander vi blå, rød og gul.
-
 \newpage
+
 
 \subsection{Plotte funksjoner}
 Man kan også plotte funksjoner i TikZ. Da er det kjekt å kjenne til de forskjellige typer piler.
