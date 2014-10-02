@@ -22,6 +22,7 @@
 
 \maketitle
 \tableofcontents
+\listoffigures
 \newpage
 
 %%% BASICS %%%
@@ -165,7 +166,7 @@ For å pynte litt på sirkelen vår, kan vi legge til noen ekstra argumenter til
 	\fill[blue] (0,0) rectangle (1,1) node[above left] {blue};
 	\fill[cyan] (2,0) rectangle (3,1) node[above left] {cyan};
 	\fill[teal] (4,0) rectangle (5,1) node[above left] {teal};
-	\fill[lightgray] (7,0) rectangle (6,1) node[above left] {lightgray};
+	\fill[lightgray] (7,0) rectangle (6,1) node[above right] {lightgray};
 	\fill[gray] (9,0) rectangle (8,1) node[above right] {gray};
 	\fill[darkgray] (11,0) rectangle (10,1) node[above right] {darkgray};
 	\fill[black] (13,0) rectangle (12,1) node[above right] {black};
@@ -234,7 +235,6 @@ Vi kan også fylle formene våre ved å bruke kommandoen \texttt{\textbackslash 
 \subsection{Plotte funksjoner}
 Man kan også plotte funksjoner i TikZ. Da er det kjekt å kjenne til de forskjellige typer piler.
 
-\subsubsection{Forskjellige typer piler i TikZ}
 \begin{figure}[h!]
 \centering
 \begin{tikzpicture}
@@ -253,8 +253,7 @@ Man kan også plotte funksjoner i TikZ. Da er det kjekt å kjenne til de forskje
 \draw[->]  (0,0) -- (4,0);
 \end{Verbatim}
 
-\subsubsection{Plotting}
-
+\subsubsection{\texttt{plot}}
 \begin{center}
 \scalebox{1.2}{
 \begin{tikzpicture}
@@ -504,7 +503,7 @@ Vi vil ha: \newline \newline
 
 \vspace{20pt}
 
-Da legger vi på at attributt til i listen til \texttt{tikzpicture} som forteller noe om avstanden mellom nodene. 
+Da legger vi på et attributt til i listen til \texttt{tikzpicture} som forteller noe om avstanden mellom nodene. 
 
 \begin{Verbatim}[fontsize=\small, frame=single]
 \begin{tikzpicture}[every node/.style={circle, draw=black}, 
