@@ -12,6 +12,7 @@
 \usetikzlibrary[topaths]
 \usetikzlibrary{automata}
 \usetikzlibrary{graphs}
+\usetikzlibrary{shapes}
 
 \newcount\mycount
 
@@ -346,7 +347,7 @@ child { node[opt.] {value} }
 
 \newpage
 
-\subsection{Justere avstand i trær}
+\subsection{Justere avstand mellom noder}
 
 Når vi nå vil bygge videre og legge til tallet 6 under \texttt{child \{node \{3\}\}} vil vi krasje bort i 5. Da trenger vi å justere avstanden mellom søsken-noder.
 
@@ -407,6 +408,44 @@ Da legger vi på at attributt til i listen til \texttt{tikzpicture} som fortelle
 Her forteller vi at stilen til nodene på \texttt{level 1} skal være at de har avstand til sine søsken med 20 mm, og 15 mm for \texttt{level 2}. Vi kunne også lagt til attributtet \texttt{level distance} for å få større eller mindre avstand mellom lagene. 
 
 \newpage
+
+\subsection{Former som noder kan ha}
+Man kan få forskjellige fasonger på noder ved å inkludere \texttt{\textbackslash usetikzlibrary\{shapes\}}. Her er en oversikt over forskjellige fasonger en node kan ha. For å få ønsket fasong skriver man noden på denne formen:
+\begin{Verbatim}[fontsize=\small, frame=single]
+\node[rectangle] {Rectangle};
+\node[regular polygon, regular polygon sides=5] {n=5};
+\node[star, star points=4] {p=4};
+\node[circle split] {Circle \nodepart{lower} split};
+\end{Verbatim}
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+    \matrix[nodes={draw, thick},
+        row sep=0.5cm,column sep=0.5cm] {
+    \node[draw=none,fill=none] {Plain node}; &
+    \node[rectangle] {Rectangle}; &
+    \node[circle] {Circle};\\
+    \node[ellipse] {Ellipse};&
+    \node[circle split] {Circle \nodepart{lower} split};&
+    \node[forbidden sign,text width=4em, text centered] {Forbidden sign};\\
+    \node[diamond] {Diamond};&
+    \node[cross out] {Cross out};&
+    \node[strike out] {Strike out};\\
+    \node[regular polygon,regular polygon sides=5] {Polygon};&
+    \node[regular polygon,regular polygon sides=7] {$n=7$};&
+    \node[regular polygon,regular polygon sides=9] {$n=9$};\\
+    \node[star] {Star};&
+    \node[star,star points=7,star point ratio=0.8] {$p=7$};&
+    \node[star,star points=10] {$p=9$};\\
+    };
+\end{tikzpicture}
+\caption{Forskjellige fasonger på noder.}
+\end{figure}
+
+
+\newpage
+
 \subsection{Eksempel på et tre med avstander}
 
 \begin{center}
