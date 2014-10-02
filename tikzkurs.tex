@@ -7,14 +7,12 @@
 
 
 \usepackage{tikz}
+\usepackage{circuitikz}
 \usepackage{amsmath}
 
-\usetikzlibrary[topaths]
 \usetikzlibrary{automata}
-\usetikzlibrary{graphs}
 \usetikzlibrary{shapes}
-
-\newcount\mycount
+\usetikzlibrary{circuits}
 
 \title{Tegnekurs i TikZ}
 \author{Veronika Heimsbakk \\ veronahe@ulrik.uio.no}
@@ -42,14 +40,20 @@ Alle illustrasjoner som skal tegnes ved hjelp av pakken TikZ krever et miljø so
 
 \begin{center}
 \begin{tikzpicture}
-	\draw (0,0) -- (4,0);
+	\draw (0,2) -- (4,2);
+	\draw (0cm,1.5cm) -- (4cm,1.5cm);
+	\draw (0em, 1cm) -- (4em, 1cm);
+	\draw (0pt, 0.5cm) -- (4pt, 0.5cm);
 \end{tikzpicture}
 \end{center}
 
 En av de mest brukte TikZ kommandoene er \texttt{\textbackslash draw}. For å tegne ei rett linje sier man hvor man vil tegne \textit{fra} og \textit{til}:
 
-\begin{Verbatim}[fontsize=\small]
-\draw (0,0) -- (4,0);
+\begin{Verbatim}[fontsize=\small, frame=single]
+\draw (0,2) -- (4,2);
+\draw (0cm,1.5cm) -- (4cm,1.5cm);
+\draw (0em, 1cm) -- (4em, 1cm);
+\draw (0pt, 0.5cm) -- (4pt, 0.5cm);
 \end{Verbatim}
 
 \subsection{Kurver}
@@ -111,14 +115,14 @@ Den første koordinaten er sirkelens sentrum, og lengden vi oppgir til slutt er 
 For å pynte litt på sirkelen vår, kan vi legge til noen ekstra argumenter til \texttt{\textbackslash draw}-kommandoen. For eksempel slik:
 \begin{center}
 \begin{tikzpicture}
-	\draw[red, thick, dashed] (2,2) circle (1.5cm);
-	\draw[green, thick] (6,2) circle (1.5cm);
+	\draw[red, thick, dashed] (2,2) circle (1cm);
+	\draw[green, thick] (6,2) circle (1cm);
 \end{tikzpicture}
 \end{center}
 
 \begin{Verbatim}[fontsize=\small]
-\draw[red, thick, dashed] (2,2) circle (1.5cm);
-\draw[green, thick] (6,2) circle (1.5cm);
+\draw[red, thick, dashed] (2,2) circle (1cm);
+\draw[green, thick] (6,2) circle (1cm);
 \end{Verbatim}
 
 
@@ -136,7 +140,6 @@ For å pynte litt på sirkelen vår, kan vi legge til noen ekstra argumenter til
 \caption{Mulige tykkelser i TikZ.}
 \end{figure}
 
-\newpage
 
 \subsection{Farger}
 \begin{figure}[h!]
@@ -180,8 +183,6 @@ Vi kan også fylle formene våre ved å bruke kommandoen \texttt{\textbackslash 
 \filldraw[red!50, draw=black, very thick] (0,0) rectangle (2,2);
 \end{Verbatim}
 
-\newpage
-
 \noindent Vi har også gradient i TikZ, og det kan se slik ut:
 
 \vspace{15pt}
@@ -212,22 +213,25 @@ Vi kan også fylle formene våre ved å bruke kommandoen \texttt{\textbackslash 
 \shade[inner color=black, outer color=red] (0,0) rectangle (2,2);
 \end{Verbatim}
 
+\newpage
 
 %%% KOORDINATER %%%
 \section{Koordinatsystem}
 Dette eksempelet krever et rutenett, piler, noder og plassering av tall og bokstaver. Vi starter med et rutenett:
 
 \begin{center}
+\scalebox{0.8}{
 \begin{tikzpicture}
-    \draw[step=1cm,gray,very thin] (-0.9,-0.9) grid (4.9,4.9);
+    \draw[step=1cm,gray!80,very thin] (-1.9,-1.9) grid (5.9,5.9);
 \end{tikzpicture}
+}
 \end{center}
 
 \begin{Verbatim}[fontsize=\small]
-\draw[step=1cm,gray,very thin] (-0.9,-0.9) grid (4.9,4.9);
+\draw[step=1cm,gray!80,very thin] (-1.9,-1.9) grid (5.9,5.9);
 \end{Verbatim}
 
-\newpage
+
 \subsection{Piler/akser}
 \noindent Videre trenger vi x-aksen og y-aksen. Dette er to linjer med piler i enden.
 
@@ -246,12 +250,12 @@ Dette eksempelet krever et rutenett, piler, noder og plassering av tall og bokst
 \draw[thick, ->] (0,0) -- (0,4.5);
 \end{Verbatim}
 
-
+\newpage
 \subsection{Noder}
 Vi kan legge på tekst (\textit{label}) ved å bruke nøkkelordet \texttt{node}. Vi plasserer teksten ved linjene vi har tegnet ved å fortelle noden hvor vi vil ha den.
 
 \begin{center}
-\scalebox{0.8}{
+\scalebox{0.6}{
 \begin{tikzpicture}
     \draw[step=1cm,gray!80,very thin] (-1.9,-1.9) grid (5.9,5.9);
     \draw[thick, ->] (0,0) -- (4.5,0) node[below right] {x axis};
@@ -266,10 +270,33 @@ Vi kan legge på tekst (\textit{label}) ved å bruke nøkkelordet \texttt{node}.
 \end{Verbatim}
 
 
-\newpage
-
 \subsection{Løkker}
 \noindent Vi kan fortsette med tallene som skal gå langs aksene ved å bruke løkker:
+\begin{center}
+\scalebox{0.6}{
+\begin{tikzpicture}
+    \draw[step=1cm,gray!80,very thin] (-1.9,-1.9) grid (5.9,5.9);
+    \draw[thick, ->] (0,0) -- (4.5,0) node[below right] {x axis};
+    \draw[thick, ->] (0,0) -- (0,4.5) node[above left] {y axis};
+
+    \foreach \x in {0,1,2,3,4}
+	\draw (\x cm, 2pt) -- (\x cm, -2pt) node[below] {$\x$};
+    \foreach \y in {0,1,2,3,4}
+	\draw (2pt, \y cm) -- (-2pt, \y cm) node[left] {$\y$};
+\end{tikzpicture}
+}
+\end{center}
+
+Denne løkken går over linjene vi allerede har tegnet, og setter en liten strek for hver centimeter. Og ved siden av linjen skriver vi et tall.
+
+\begin{Verbatim}[fontsize=\small, frame=single]
+\foreach \x in {0,1,2,3,4}
+  \draw (\x cm, 2pt) -- (\x cm, -2pt) node[below] {$\x$};
+\foreach \y in {0,1,2,3,4}
+  \draw (2pt, \y cm) -- (-2pt, \y cm) node[left]  {$\y$};
+\end{Verbatim}
+
+\subsection{Hele koden for koordinatsystemet}
 \begin{center}
 \begin{tikzpicture}
     \draw[step=1cm,gray!80,very thin] (-1.9,-1.9) grid (5.9,5.9);
@@ -283,18 +310,16 @@ Vi kan legge på tekst (\textit{label}) ved å bruke nøkkelordet \texttt{node}.
 \end{tikzpicture}
 \end{center}
 
-Denne løkken går over linjene vi allerede har tegnet, og setter en liten strek for hver centimeter. Og ved siden av linjen skriver vi et tall.
-
 \begin{Verbatim}[fontsize=\small, frame=single]
 \begin{tikzpicture}
- \draw[step=1cm,gray!30,very thin] (-1.9,-1.9) grid (5.9,5.9);
- \draw[thick, ->] (0,0) -- (4.5,0) node[below right] {x axis};
- \draw[thick, ->] (0,0) -- (0,4.5) node[above left] {y axis};
+  \draw[step=1cm,gray!80,very thin] (-1.9,-1.9) grid (5.9,5.9);
+  \draw[thick, ->] (0,0) -- (4.5,0) node[below right] {x axis};
+  \draw[thick, ->] (0,0) -- (0,4.5) node[above left] {y axis};
 
- \foreach \x in {0,1,2,3,4}
-   \draw (\x cm, 2pt) -- (\x cm, -2pt) node[below] {$\x$};
- \foreach \y in {0,1,2,3,4}
-   \draw (2pt, \y cm) -- (-2pt, \y cm) node[left]  {$\y$};
+  \foreach \x in {0,1,2,3,4}
+    \draw (\x cm, 2pt) -- (\x cm, -2pt) node[below] {$\x$};
+  \foreach \y in {0,1,2,3,4}
+    \draw (2pt, \y cm) -- (-2pt, \y cm) node[left] {$\y$};
 \end{tikzpicture}
 \end{Verbatim}
 
@@ -764,6 +789,71 @@ Her er en flittig 4-bever. Denne automaten dekker de fleste opsjoner.
 \end{Verbatim}
 
 \newpage
+
+%%% LOGISKE PORTER %%%
+\section{Logiske porter}
+Noe som er kjekt å vite om er også logiske porter i Circuitikz. Dette får du ved å inkludere pakken:
+\begin{Verbatim}[fontsize=\small]
+\usepackage{circuitikz}
+\end{Verbatim}
+
+Siden dette \textit{ikke} er TikZ jobber vi ikke i miljøet \texttt{tikzpicture}, men i miljøet \texttt{circuitikz}.
+
+\begin{Verbatim}[fontsize=\small, frame=single]
+\begin{circuitikz} \draw
+    <kode her>
+\end{circuitikz}
+\end{Verbatim}
+
+\subsection{Eksempel på en liten krets}
+
+\begin{center}
+\begin{circuitikz} \draw
+(-3,0.3) node[not port] (not) {}
+(0,0) node[and port] (and) {}
+(2,1) node[or port] (or) {}
+(not.out) -- (and.in 1)
+(and.out) -- (or.in 2);
+\end{circuitikz}
+\end{center}
+
+\begin{Verbatim}[fontsize=\small, frame=single]
+\begin{circuitikz} \draw
+    (-3,0.3) node[not port] (not) {}
+    (0,0)    node[and port] (and) {}
+    (2,1)    node[or port]  (or)  {}
+
+    (not.out) -- (and.in 1)
+    (and.out) -- (or.in 2);
+\end{circuitikz}
+\end{Verbatim}
+
+Det fungerer på samme måte som når vi tegner noder i TikZ. Vi starter med koordinatene, så definerer vi hva slags node (port) vi vil ha, og til slutt en evt. merkelapp.
+
+\begin{Verbatim}[fontsize=\small]
+(x,y) node [what kind of port] (name of port) {label}
+\end{Verbatim}
+
+Portens navn er valgfritt, og brukes kun i din egen kode. 
+
+\newpage
+
+\subsection{Oversikt over forskjellige porter i Circuitikz}
+\begin{figure}[h!]
+\centering
+\begin{tabular}{ll}
+\texttt{[and port]} & \begin{circuitikz} \draw (0,0) node[and port] (myand1) {}; \end{circuitikz}\\
+\texttt{[or port]} & \begin{circuitikz} \draw (0,0) node[or port] (myand1) {}; \end{circuitikz}\\
+\texttt{[not port]} & \begin{circuitikz} \draw (0,0) node[not port] (myand1) {}; \end{circuitikz}\\
+\texttt{[nand port]} & \begin{circuitikz} \draw (0,0) node[nand port] (myand1) {}; \end{circuitikz}\\
+\texttt{[nor port]} & \begin{circuitikz} \draw (0,0) node[nor port] (myand1) {}; \end{circuitikz}\\
+\texttt{[xor port]} & \begin{circuitikz} \draw (0,0) node[xnor port] (myand1) {}; \end{circuitikz}\\
+\end{tabular}
+\caption{Forskjellige porter i Circuitikz}
+\end{figure}
+
+\newpage
+
 \section{Resursser}
 \subsection*{Gøyale eksempler}
 \begin{itemize}
