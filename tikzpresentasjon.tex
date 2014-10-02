@@ -53,9 +53,12 @@ Opprette miljøet:
 \end{tikzpicture}
 \end{center}
 
+\begin{itemize}
+\item
 \begin{Verbatim}[fontsize=\small]
 \draw (0,0) -- (4,0);
 \end{Verbatim}
+\end{itemize}
 
 \begin{center}
 \begin{tikzpicture}
@@ -63,9 +66,12 @@ Opprette miljøet:
 \end{tikzpicture}
 \end{center}
 
+\begin{itemize}
+\item
 \begin{Verbatim}[fontsize=\small]
 \draw (0em,0em) -- (4em,0em);
 \end{Verbatim}
+\end{itemize}
 
 \begin{center}
 \begin{tikzpicture}
@@ -73,9 +79,12 @@ Opprette miljøet:
 \end{tikzpicture}
 \end{center}
 
+\begin{itemize}
+\item
 \begin{Verbatim}[fontsize=\small]
 \draw (0pt,0pt) -- (4pt,0pt);
 \end{Verbatim}
+\end{itemize}
 
 \end{frame}
 
@@ -447,6 +456,7 @@ Opprette miljøet:
 %%% NODER: FASONGER %%%
 \begin{frame}[fragile]
 \frametitle{Noder -- fasonger}
+\framesubtitle{\textbackslash usetikzpackage\{shapes\}}
 
 \begin{center}
 \begin{tikzpicture}
@@ -683,7 +693,7 @@ Markerte kanter (\texttt{selected edge})
 \tikzstyle{selected vertex} = [vertex, fill=red!50]
 
 % Tegne nodene
-\node[vertex] (v1) at (0,0) {1};
+\node[vertex]          (v1) at (0,0)   {1};
 \node[selected vertex] (v2) at (0.5,0) {2};
 \end{Verbatim}
 
@@ -720,7 +730,7 @@ Markerte kanter (\texttt{selected edge})
 \node[vertex] (v3) at (1,0)   {3};
 
 % Tegne kantene
-\draw[edge] (v1) -- (v2);
+\draw[edge]          (v1) -- (v2);
 \draw[selected edge] (v2) -- (v3);
 \end{Verbatim}
 
