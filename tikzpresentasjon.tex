@@ -9,7 +9,7 @@
 \usepackage{tikz}
 \usepackage{amsmath}
 
-\usetikzlibrary[topaths]
+\usetikzlibrary{shapes}
 \usetikzlibrary{automata}
 \usetikzlibrary{graphs}
 
@@ -53,10 +53,28 @@ Opprette miljøet:
 \end{tikzpicture}
 \end{center}
 
-\vspace{20pt}
-
 \begin{Verbatim}[fontsize=\small]
 \draw (0,0) -- (4,0);
+\end{Verbatim}
+
+\begin{center}
+\begin{tikzpicture}
+	\draw (0em,0em) -- (4em,0em);
+\end{tikzpicture}
+\end{center}
+
+\begin{Verbatim}[fontsize=\small]
+\draw (0em,0em) -- (4em,0em);
+\end{Verbatim}
+
+\begin{center}
+\begin{tikzpicture}
+	\draw (0pt,0pt) -- (4pt,0pt);
+\end{tikzpicture}
+\end{center}
+
+\begin{Verbatim}[fontsize=\small]
+\draw (0pt,0pt) -- (4pt,0pt);
 \end{Verbatim}
 
 \end{frame}
@@ -136,6 +154,55 @@ Opprette miljøet:
 
 \end{frame}
 
+%%% THE BASICS : TYKKELSER%%%
+\begin{frame}[fragile]
+\frametitle{The Basics -- tykkelser}
+\begin{center}
+\begin{tikzpicture}
+	\draw[ultra thin] (0,0) -- (2,0) node[right] {ultra thin};
+	\draw[very thin] (0,0.5) -- (2,0.5) node[right] {very thin};
+	\draw[thin] (0,1) -- (2,1) node[right] {thin};
+	\draw[thick] (0,1.5) -- (2,1.5) node[right] {thick};
+	\draw[very thick] (0,2) -- (2,2) node[right] {very thick};'
+	\draw[ultra thick] (0,2.5) -- (2,2.5) node[right] {ultra thick};
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+%%% THE BASICS : FARGER%%%
+\begin{frame}[fragile]
+\frametitle{The Basics -- farger}
+\begin{center}
+\scalebox{0.8}{
+\begin{tikzpicture}
+	\fill[red] (0,4) rectangle (1,5) node[above left] {red};
+	\fill[violet] (2,4) rectangle (3,5) node[above left] {violet};
+	\fill[purple] (4,4) rectangle (5,5) node[above left] {purple};
+	\fill[magenta] (7,4) rectangle (6,5) node[above right] {magenta};
+	\fill[pink] (9,4) rectangle (8,5) node[above right] {pink};
+	\fill[white, draw=black, thin] (11,4) rectangle (10,5) node[above right] {white};
+
+	\fill[green] (0,2) rectangle (1,3) node[above left] {green};
+	\fill[lime] (2,2) rectangle (3,3) node[above left] {lime};
+	\fill[olive] (4,2) rectangle (5,3) node[above left] {olive};
+	\fill[orange] (7,2) rectangle (6,3) node[above right] {orange};
+	\fill[yellow] (9,2) rectangle (8,3) node[above right] {yellow};
+	\fill[brown] (11,2) rectangle (10,3) node[above right] {brown};
+
+	\fill[blue] (0,0) rectangle (1,1) node[above left] {blue};
+	\fill[cyan] (2,0) rectangle (3,1) node[above left] {cyan};
+	\fill[teal] (4,0) rectangle (5,1) node[above left] {teal};
+	\fill[lightgray] (7,0) rectangle (6,1) node[above right] {lightgray};
+	\fill[gray] (9,0) rectangle (8,1) node[above right] {gray};
+	\fill[darkgray] (11,0) rectangle (10,1) node[above right] {darkgray};
+	\fill[black] (13,0) rectangle (12,1) node[above right] {black};
+\end{tikzpicture}
+}
+\end{center}
+
+\end{frame}
+
 %%% THE BASICS : FARGER%%%
 \begin{frame}[fragile]
 \frametitle{The Basics -- fylle med farge}
@@ -176,18 +243,66 @@ Opprette miljøet:
 \frametitle{The Basics -- fylle med gradient}
 \begin{center}
 \begin{tikzpicture}
-	\shade[left color=black, right color=red] (0,0) rectangle (3,3);
+	\shade[left color=black, right color=red] (0,0) rectangle (2,2);
+	\shade[top color=black, bottom color=red] (3,0) rectangle (5,2);
+	\shade[inner color=black, outer color=red] (6,0) rectangle (8,2);
 \end{tikzpicture}
 \end{center}
 
 \vspace{20pt}
 
 \begin{Verbatim}[fontsize=\footnotesize]
-\shade[left color=black, right color=red] (0,0) rectangle (3,3);
+\shade[left color=black, right color=red]  (0,0) rectangle (2,2);
+\shade[top color=black, bottom color=red]  (0,0) rectangle (2,2);
+\shade[inner color=black, outer color=red] (0,0) rectangle (2,2);
 \end{Verbatim}
 
 \end{frame}
 
+
+%%% PILER %%%
+\begin{frame}[fragile]
+\frametitle{Piler i TikZ}
+\begin{center}
+\begin{tikzpicture}
+    \draw[->, thick] (0,0) -- (4,0);
+    \draw[<-, thick] (0,0.5) -- (4,0.5);
+    \draw[|->, thick] (0,1) -- (4,1);
+    \draw[<->, thick] (0,1.5) -- (4,1.5);
+\end{tikzpicture}
+\end{center}
+
+\vspace{20pt}
+
+\begin{Verbatim}[fontsize=\small]
+\draw[<->] (0,1.5) -- (4,1.5);
+\draw[|->] (0,1) -- (4,1);
+\draw[<-]  (0,0.5) -- (4,0.5);
+\draw[->]  (0,0) -- (4,0);
+\end{Verbatim}
+
+\end{frame}
+
+%%% PLOTTE FUNKSJONER %%%
+\begin{frame}[fragile]
+\frametitle{Plotte funksjoner}
+\begin{center}
+\begin{tikzpicture}
+    \draw[<->] (0,3.5) -- (0,0) -- (5,0);
+    \draw[red, thick, domain=0:1.2] plot (\x, {0.25+\x+\x*\x});
+\end{tikzpicture}
+\end{center}
+
+\vspace{20pt}
+
+\begin{Verbatim}[fontsize=\footnotesize]
+\begin{tikzpicture}
+    \draw[<->] (0,3.5) -- (0,0) -- (5,0);
+    \draw[red, thick, domain=0:1.2] plot (\x, {0.25+\x+\x*\x});
+\end{tikzpicture}
+\end{Verbatim}
+
+\end{frame}
 
 %%% KOORDINATSYSTEM: RUTENETT%%%
 \begin{frame}[fragile]
@@ -329,6 +444,31 @@ Opprette miljøet:
 
 \end{frame}
 
+%%% NODER: FASONGER %%%
+\begin{frame}[fragile]
+\frametitle{Noder -- fasonger}
+
+\begin{center}
+\begin{tikzpicture}
+    \matrix[nodes={draw, thick},
+        row sep=0.5cm,column sep=0.5cm] {
+    \node[draw=none,fill=none] {Plain node}; &
+    \node[rectangle] {Rectangle}; &
+    \node[circle] {Circle};\\
+    \node[ellipse] {Ellipse};&
+    \node[circle split] {Circle \nodepart{lower} split};&
+    \node[forbidden sign,text width=4em, text centered] {Forbidden sign};\\
+    \node[cross out] {Cross out};&
+    \node[regular polygon,regular polygon sides=5] {Polygon};&
+    \node[star] {Star};\\
+    };
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+
+%%% TRÆR: BYGGING %%%
 \begin{frame}[fragile]
 \frametitle{Trær -- bygge et tre}
 
