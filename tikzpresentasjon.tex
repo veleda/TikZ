@@ -24,6 +24,26 @@ veronahe@ulrik.uio.no
 \end{center}
 \end{frame}
 
+%%% THE BASICS : LAGE TIKZPICTURE%%%
+\begin{frame}[fragile]
+\frametitle{The Basics}
+
+Inkludere pakken:
+\begin{Verbatim}[fontsize=\small]
+\usepackage{tikz}
+\end{Verbatim}
+
+\vspace{20pt}
+
+Opprette miljøet:
+\begin{Verbatim}[fontsize=\small]
+\begin{tikzpicture}
+    <kode her>
+\end{tikzpicture}
+\end{Verbatim}
+
+\end{frame}
+
 %%% THE BASICS : LINJE%%%
 \begin{frame}[fragile]
 \frametitle{The Basics -- tegne ei linje}
@@ -36,9 +56,7 @@ veronahe@ulrik.uio.no
 \vspace{20pt}
 
 \begin{Verbatim}[fontsize=\small]
-\begin{tikzpicture}
-    \draw (0,0) -- (4,0);
-\end{tikzpicture}
+\draw (0,0) -- (4,0);
 \end{Verbatim}
 
 \end{frame}
@@ -148,7 +166,7 @@ veronahe@ulrik.uio.no
 
 \vspace{20pt}
 
-\begin{Verbatim}[fontsize=\small]
+\begin{Verbatim}[fontsize=\footnotesize]
 \filldraw[red!50, draw=black, very thick] (0,0) rectangle (3,3);
 \end{Verbatim}
 
@@ -164,7 +182,7 @@ veronahe@ulrik.uio.no
 
 \vspace{20pt}
 
-\begin{Verbatim}[fontsize=\small]
+\begin{Verbatim}[fontsize=\footnotesize]
 \shade[left color=black, right color=red] (0,0) rectangle (3,3);
 \end{Verbatim}
 
@@ -229,8 +247,8 @@ veronahe@ulrik.uio.no
 
 \begin{tikzpicture}
     \draw[step=1cm,gray!30,very thin] (-1.9,-1.9) grid (5.9,5.9);
-    \draw[thick, ->] (0,0) -- (4.5,0) node[anchor=north west] {x axis};
-    \draw[thick, ->] (0,0) -- (0,4.5) node[anchor=south east] {y axis};
+   \draw[thick, ->] (0,0) -- (4.5,0) node[below right] {x axis};
+   \draw[thick, ->] (0,0) -- (0,4.5) node[above left] {y axis};
 \end{tikzpicture}
 \end{center}
 
@@ -242,8 +260,8 @@ veronahe@ulrik.uio.no
 
 
 \begin{Verbatim}[fontsize=\footnotesize]
-\draw[thick, ->] (0,0) -- (4.5,0) node[anchor=north west] {x axis};
-\draw[thick, ->] (0,0) -- (0,4.5) node[anchor=south east] {y axis};
+ \draw[thick, ->] (0,0) -- (4.5,0) node[below right] {x axis};
+ \draw[thick, ->] (0,0) -- (0,4.5) node[above left]  {y axis};
 \end{Verbatim}
 
 \end{frame}
@@ -275,9 +293,9 @@ veronahe@ulrik.uio.no
 
 \begin{Verbatim}[fontsize=\footnotesize]
 \foreach \x in {0,1,2,3,4}
-   \draw (\x cm, 2pt) -- (\x cm, -2pt) node[anchor=north] {$\x$};
+  \draw (\x cm, 2pt) -- (\x cm, -2pt) node[below] {$\x$};
 \foreach \y in {0,1,2,3,4}
-   \draw (2pt, \y cm) -- (-2pt, \y cm) node[anchor=east]  {$\y$};
+  \draw (2pt, \y cm) -- (-2pt, \y cm) node[left]  {$\y$};
 \end{Verbatim}
 
 \end{frame}
@@ -287,8 +305,10 @@ veronahe@ulrik.uio.no
 \frametitle{Trær}
 
 \begin{center}
-\begin{tikzpicture}[every node/.style={},level 2/.style={sibling distance=20mm},
-				   level 3/.style={sibling distance=10mm}, level distance=30pt]
+\begin{tikzpicture}[every node/.style={},
+				   level 2/.style={sibling distance=20mm},
+				   level 3/.style={sibling distance=10mm}, 
+				   level distance=30pt]
 \node {S}
 	child { node{A} 
 		child { node {A} 

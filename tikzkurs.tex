@@ -51,8 +51,22 @@ En av de mest brukte TikZ kommandoene er \texttt{\textbackslash draw}. For å te
 \draw (0,0) -- (4,0);
 \end{Verbatim}
 
-\subsection{Kvadrat}
+\subsection{Kurver}
+Vi bruker kontrollpunkter for å lage en kurvet linje. I eksempelet her, så starter vi i koordinatene \texttt{(-2,2)} og så tegner vi en kurve til første kontrollpunkt som er \texttt{(-1,0)}, så videre til \texttt{(1,0)}, og til slutt ender kurven opp i slutt-punktet som er \texttt{(2,2)}.
 
+\begin{center}
+\begin{tikzpicture}
+	\draw (-2,2) .. controls (-1,0) and (1,0) .. (2,2);
+\end{tikzpicture}
+\end{center}
+
+\begin{Verbatim}[fontsize=\small]
+\draw (-2,2) .. controls (-1,0) and (1,0) .. (2,2);
+\end{Verbatim}
+
+\newpage
+
+\subsection{Kvadrat}
 \noindent Videre kan vi bygge på og lage et kvadrat:
 \begin{center}
 \begin{tikzpicture}
@@ -106,60 +120,97 @@ For å pynte litt på sirkelen vår, kan vi legge til noen ekstra argumenter til
 \draw[green, thick] (6,2) circle (1.5cm);
 \end{Verbatim}
 
+
+\subsection{Tykkelser}
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+	\draw[ultra thin] (0,0) -- (2,0) node[right] {ultra thin};
+	\draw[very thin] (0,0.5) -- (2,0.5) node[right] {very thin};
+	\draw[thin] (0,1) -- (2,1) node[right] {thin};
+	\draw[thick] (0,1.5) -- (2,1.5) node[right] {thick};
+	\draw[very thick] (0,2) -- (2,2) node[right] {very thick};'
+	\draw[ultra thick] (0,2.5) -- (2,2.5) node[right] {ultra thick};
+\end{tikzpicture}
+\caption{Mulige tykkelser i TikZ.}
+\end{figure}
+
 \newpage
+
 \subsection{Farger}
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+	\fill[red] (0,0) rectangle (2,2) node[above left] {red};
+	\fill[green] (3,0) rectangle (5,2) node[above left] {green};
+	\fill[black] (6,0) rectangle (8,2) node[above left] {black};
+	\filldraw[white, draw=black, thin] (9,0) rectangle (11,2) node[above left] {white};
+	\fill[blue] (0,3) rectangle (2,5) node[above left] {blue};
+	\fill[cyan] (3,3) rectangle (5,5) node[above left] {cyan};
+	\fill[magenta] (6,3) rectangle (8,5) node[above left] {magenta};
+	\fill[yellow] (9,3) rectangle (11,5) node[above left] {yellow};
+\end{tikzpicture}
+\caption{Mulige farger i TikZ.}
+\end{figure}
+
+
+\subsection{Bruke farger}
 Vi kan også fylle formene våre ved å bruke kommandoen \texttt{\textbackslash fill}.
 
 \begin{center}
 \begin{tikzpicture}
-	\fill[red] (0,0) rectangle (3,3);
+	\fill[red] (0,0) rectangle (2,2);
 \end{tikzpicture}
 \end{center}
 
 \begin{Verbatim}[fontsize=\small]
-\fill[red] (0,0) rectangle (3,3);
+\fill[red] (0,0) rectangle (2,2);
 \end{Verbatim}
 
 \noindent Om vi ønsker å legge til en kant rundt kvadratet, kan vi bruke kommandoen \texttt{\textbackslash filldraw}. Her fyller vi kvadratet rødt med gjennomsiktighet på 50\% og en tykk sort strek som kant.
 
 \begin{center}
 \begin{tikzpicture}
-	\filldraw[red!50, draw=black, very thick] (0,0) rectangle (3,3);
+	\filldraw[red!50, draw=black, very thick] (0,0) rectangle (2,2);
 \end{tikzpicture}
 \end{center}
 
 \begin{Verbatim}[fontsize=\small]
-\filldraw[red!50, draw=black, very thick] (0,0) rectangle (3,3);
+\filldraw[red!50, draw=black, very thick] (0,0) rectangle (2,2);
 \end{Verbatim}
+
+\newpage
 
 \noindent Vi har også gradient i TikZ, og det kan se slik ut:
 
 \vspace{15pt}
 
+\begin{center}
 \begin{minipage}{0.3\textwidth}
 \begin{tikzpicture}
-	\shade[left color=black, right color=red] (0,0) rectangle (3,3);
+	\shade[left color=black, right color=red] (0,0) rectangle (2,2);
 \end{tikzpicture}
 \end{minipage}
 \begin{minipage}{0.3\textwidth}
 \begin{tikzpicture}
-	\shade[top color=black, bottom color=red] (0,0) rectangle (3,3);
+	\shade[top color=black, bottom color=red] (0,0) rectangle (2,2);
 \end{tikzpicture}
 \end{minipage}
 \begin{minipage}{0.3\textwidth}
 \begin{tikzpicture}
-	\shade[inner color=black, outer color=red] (0,0) rectangle (3,3);
+	\shade[inner color=black, outer color=red] (0,0) rectangle (2,2);
 \end{tikzpicture}
 \end{minipage}
+\end{center}
 \vspace{10pt}
 
 
 \begin{Verbatim}[fontsize=\small]
-\shade[left color=black, right color=red]  (0,0) rectangle (3,3);
-\shade[top color=black, bottom color=red]  (0,0) rectangle (3,3);
-\shade[inner color=black, outer color=red] (0,0) rectangle (3,3);
+\shade[left color=black, right color=red]  (0,0) rectangle (2,2);
+\shade[top color=black, bottom color=red]  (0,0) rectangle (2,2);
+\shade[inner color=black, outer color=red] (0,0) rectangle (2,2);
 \end{Verbatim}
-\newpage
+
 
 %%% KOORDINATER %%%
 \section{Koordinatsystem}
@@ -175,31 +226,37 @@ Dette eksempelet krever et rutenett, piler, noder og plassering av tall og bokst
 \draw[step=1cm,gray,very thin] (-0.9,-0.9) grid (4.9,4.9);
 \end{Verbatim}
 
+\newpage
 \subsection{Piler/akser}
 \noindent Videre trenger vi x-aksen og y-aksen. Dette er to linjer med piler i enden.
+
 \begin{center}
+\scalebox{0.8}{
 \begin{tikzpicture}
     \draw[step=1cm,gray!80,very thin] (-1.9,-1.9) grid (5.9,5.9);
     \draw[thick, ->] (0,0) -- (4.5,0);
     \draw[thick, ->] (0,0) -- (0,4.5);
 \end{tikzpicture}
+}
 \end{center}
 
 \begin{Verbatim}[fontsize=\small]
 \draw[thick, ->] (0,0) -- (4.5,0);
 \draw[thick, ->] (0,0) -- (0,4.5);
 \end{Verbatim}
-\newpage
+
 
 \subsection{Noder}
 Vi kan legge på tekst (\textit{label}) ved å bruke nøkkelordet \texttt{node}. Vi plasserer teksten ved linjene vi har tegnet ved å fortelle noden hvor vi vil ha den.
 
 \begin{center}
+\scalebox{0.8}{
 \begin{tikzpicture}
     \draw[step=1cm,gray!80,very thin] (-1.9,-1.9) grid (5.9,5.9);
     \draw[thick, ->] (0,0) -- (4.5,0) node[below right] {x axis};
     \draw[thick, ->] (0,0) -- (0,4.5) node[above left] {y axis};
 \end{tikzpicture}
+}
 \end{center}
 
 \begin{Verbatim}[fontsize=\small]
