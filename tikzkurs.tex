@@ -4,7 +4,10 @@
 \usepackage[norsk]{babel}
 \usepackage{hyperref}
 \usepackage{fancyvrb}
+\usepackage[scaled]{helvet}
 
+
+\renewcommand{\rmdefault}{phv}
 
 \usepackage{tikz}
 \usepackage{circuitikz}
@@ -63,6 +66,11 @@ Vi bruker kontrollpunkter for å lage en kurvet linje. I eksempelet her, så sta
 
 \begin{center}
 \begin{tikzpicture}
+	\draw (-2,0) grid (2,2);
+	\draw[fill=red] (-2,2) circle (0.1cm);
+	\draw[fill=blue] (-1,0) circle (0.1cm);
+	\draw[fill=blue] (1,0) circle (0.1cm);
+	\draw[fill=red] (2,2) circle (0.1cm);
 	\draw (-2,2) .. controls (-1,0) and (1,0) .. (2,2);
 \end{tikzpicture}
 \end{center}
@@ -146,8 +154,10 @@ For å pynte litt på sirkelen vår, kan vi legge til noen ekstra argumenter til
 
 
 \subsection{Farger}
+
 \begin{figure}[h!]
 \centering
+\scalebox{0.9}{
 \begin{tikzpicture}
 	\fill[red] (0,4) rectangle (1,5) node[above left] {red};
 	\fill[violet] (2,4) rectangle (3,5) node[above left] {violet};
@@ -171,6 +181,7 @@ For å pynte litt på sirkelen vår, kan vi legge til noen ekstra argumenter til
 	\fill[darkgray] (11,0) rectangle (10,1) node[above right] {darkgray};
 	\fill[black] (13,0) rectangle (12,1) node[above right] {black};
 \end{tikzpicture}
+}
 \caption{Mulige farger i TikZ.}
 \end{figure}
 
@@ -188,7 +199,7 @@ Vi kan også fylle formene våre ved å bruke kommandoen \texttt{\textbackslash 
 \fill[red] (0,0) rectangle (2,2);
 \end{Verbatim}
 
-\noindent Om vi ønsker å legge til en kant rundt kvadratet, kan vi bruke kommandoen \texttt{\textbackslash filldraw}. Her fyller vi kvadratet rødt med gjennomsiktighet på 50\% og en tykk sort strek som kant.
+\noindent Om vi ønsker å legge til en kant rundt kvadratet, kan vi bruke kommandoen \texttt{\textbackslash filldraw}. Her fyller vi kvadratet rødt og hvitt, 50/50.
 
 \begin{center}
 \begin{tikzpicture}
@@ -200,35 +211,39 @@ Vi kan også fylle formene våre ved å bruke kommandoen \texttt{\textbackslash 
 \filldraw[red!50, draw=black, very thick] (0,0) rectangle (2,2);
 \end{Verbatim}
 
+\subsubsection{Gradient}
 \noindent Vi har også gradient i TikZ, og det kan se slik ut:
 
-\vspace{15pt}
-
 \begin{center}
-\begin{minipage}{0.3\textwidth}
 \begin{tikzpicture}
 	\shade[left color=black, right color=red] (0,0) rectangle (2,2);
+	\shade[top color=black, bottom color=red] (3,0) rectangle (5,2);
+	\shade[inner color=black, outer color=red] (6,0) rectangle (8,2);
 \end{tikzpicture}
-\end{minipage}
-\begin{minipage}{0.3\textwidth}
-\begin{tikzpicture}
-	\shade[top color=black, bottom color=red] (0,0) rectangle (2,2);
-\end{tikzpicture}
-\end{minipage}
-\begin{minipage}{0.3\textwidth}
-\begin{tikzpicture}
-	\shade[inner color=black, outer color=red] (0,0) rectangle (2,2);
-\end{tikzpicture}
-\end{minipage}
 \end{center}
-\vspace{10pt}
-
 
 \begin{Verbatim}[fontsize=\small]
 \shade[left color=black, right color=red]  (0,0) rectangle (2,2);
 \shade[top color=black, bottom color=red]  (0,0) rectangle (2,2);
 \shade[inner color=black, outer color=red] (0,0) rectangle (2,2);
 \end{Verbatim}
+
+\subsubsection{Blande farger}
+\begin{center}
+\begin{tikzpicture}
+	\fill[blue!50!black] (0,0) rectangle (2,2);
+	\fill[blue!50] (3,0) rectangle (5,2);
+	\fill[blue!30!red!40!yellow] (6,0) rectangle (8,2);
+\end{tikzpicture}
+\end{center}
+
+\begin{Verbatim}[fontsize=\small]
+\fill[blue!50!black] (0,0) rectangle (2,2);
+\fill[blue!50] (3,0) rectangle (5,2);
+\fill[blue!30!red!40!yellow] (6,0) rectangle (8,2);
+\end{Verbatim}
+
+Her blander vi først sort og blå halvt om halvt. Så blander vi blå og hvit halvt om halvt. Og til slutt blander vi blå, rød og gul.
 
 \newpage
 
@@ -639,7 +654,7 @@ Man kan få forskjellige fasonger på noder ved å inkludere \texttt{\textbacksl
 \end{tikzpicture}
 \end{center}
 
-Å tegne trær på denne måten krever ingen tilleggsbiblioteker fra TikZ. Dette er et eksempel på tegning med \textit{parametre}. Utseende til nodene i treet er definert som parametre som har et sett med \texttt{.style}-opsjoner.
+Å tegne trær på denne måten krever ingen tilleggsbiblioteker fra TikZ. Dette er et eksempel på tegning med egendefinerte noder. Dette gjør vi via \texttt{tikzset}, her kan vi gi stilen de forskjellige typer noder.
 \begin{Verbatim}[fontsize=\small, frame=single]
 \tikzset{
    treenode/.style = {align=center, inner sep=0pt},
@@ -659,17 +674,17 @@ Man kan få forskjellige fasonger på noder ved å inkludere \texttt{\textbacksl
 Starter med å definere \texttt{treenode}, som er felles for alle typer noder. Røde og sorte noder tegnes som \texttt{circle}, hvor sorte noder har \texttt{fill=black} og tekstfarge \texttt{white}, mens røde noder har rødt omriss med \texttt{draw=red}, og tekstfarge \texttt{red}. Null-nodene sier vi skal være sorte \texttt{rectangle}. Tegnes som små kvadrater på 0.3 cm $\times$ 0.3 cm.
 
 \newpage
-\subsection{Bygge et tre}
+\subsection{Bygge det rød-svarte treet}
 \begin{Verbatim}[fontsize=\small, frame=single]
 \begin{tikzpicture}[->,level/.style={ sibling distance = 2cm, 
                     level distance = 1.5cm }] 
 \node [node_black] {38}
-    child {node [node_red] {19} 
-        child {node [node_black] {12}
-             child {node [node_red] {8} }
-             child {node [node_null] {} }
+    child { node [node_red] {19} 
+        child { node [node_black] {12}
+             child { node [node_red] {8} }
+             child { node [node_null] {} }
         }
-        child {node [node_black] {31} }
+        child { node [node_black] {31} }
     }
     child { node [node_black] {41} }
 ; 
@@ -677,20 +692,18 @@ Starter med å definere \texttt{treenode}, som er felles for alle typer noder. R
 \end{Verbatim}
 
 Setter forskjellige opsjoner med:
-\begin{center}
-\texttt{\{tikzpicture\}[->, level/.style=\{sibling distance=2cm, level distance)=1.5cm\}]}
-\end{center}
+\begin{Verbatim}[fontsize=\small, frame=single]
+\begin{tikzpicture}[->,level/.style={ sibling distance = 2cm, 
+                    level distance = 1.5cm }]
+\end{Verbatim}
 Her sier vi at treet skal tegnes med piler (\texttt{->}), og at stilen (\texttt{.style}) for distansen mellom søskennoder skal være 2 cm, og distansen mellom barn og foreldre skal være 1.5 cm.
 
-Videre så tegnes treet ved å definere roten:
-\begin{center}
-\texttt{\textbackslash node [opt.] \{node value\} ;} 
-\end{center}
-Så kan man bygge treet ved å legge inn barna til roten, osv.:
-\vspace{1em}
-
-\texttt{\textbackslash node [opt.] \{node value\} \\
-\indent \indent child \{node [opt.] \{node value\} \} ;} 
+Videre så forteller vi barna i treet hva slags node de skal være.
+\begin{Verbatim}[fontsize=\small, frame=single]
+child { node [node_red]   {x} }
+child { node [node_black] {y} }
+child { node [node_null]  {z} }
+\end{Verbatim}
 
 \newpage
 
@@ -946,7 +959,7 @@ Portens navn er valgfritt, og brukes kun i din egen kode.
 
 \newpage
 
-\section{Resursser}
+\section{Ressurser}
 \subsection*{Gøyale eksempler}
 \begin{itemize}
 	\item
