@@ -231,6 +231,50 @@ Vi kan også fylle formene våre ved å bruke kommandoen \texttt{\textbackslash 
 
 \newpage
 
+\subsection{Plotte funksjoner}
+Man kan også plotte funksjoner i TikZ. Da er det kjekt å kjenne til de forskjellige typer piler.
+
+\subsubsection{Forskjellige typer piler i TikZ}
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+    \draw[->, thick] (0,0) -- (4,0);
+    \draw[<-, thick] (0,0.5) -- (4,0.5);
+    \draw[|->, thick] (0,1) -- (4,1);
+    \draw[<->, thick] (0,1.5) -- (4,1.5);
+\end{tikzpicture}
+\caption{Forskjellige piler i TikZ.}
+\end{figure}
+
+\begin{Verbatim}[fontsize=\small, frame=single]
+\draw[<->] (0,1.5) -- (4,1.5);
+\draw[|->] (0,1) -- (4,1);
+\draw[<-]  (0,0.5) -- (4,0.5);
+\draw[->]  (0,0) -- (4,0);
+\end{Verbatim}
+
+\subsubsection{Plotting}
+
+\begin{center}
+\scalebox{1.2}{
+\begin{tikzpicture}
+    \draw[<->] (0,3.5) -- (0,0) -- (5,0);
+	\draw[red, thick, domain=0:1.2] plot (\x, {0.25+\x+\x*\x});
+\end{tikzpicture}
+}
+\end{center}
+
+\begin{Verbatim}[fontsize=\small, frame=single]
+\begin{tikzpicture}
+    \draw[<->] (0,3.5) -- (0,0) -- (5,0);
+    \draw[red, thick, domain=0:1.2] plot (\x, {0.25+\x+\x*\x});
+\end{tikzpicture}
+\end{Verbatim}
+
+\texttt{domain} er rekkevidden av $x$ som blir plottet. I dette tilfellet plotter vi funksjonen $0.25 + x + x^2$. Legg merke til at det er parenteser rundt funksjonen som vi skal plotte \texttt{plot (\textbackslash x, \{function\})}.
+
+\newpage
+
 %%% KOORDINATER %%%
 \section{Koordinatsystem}
 Dette eksempelet krever et rutenett, piler, noder og plassering av tall og bokstaver. Vi starter med et rutenett:
@@ -267,25 +311,6 @@ Dette eksempelet krever et rutenett, piler, noder og plassering av tall og bokst
 \end{Verbatim}
 
 \newpage
-
-\subsubsection{Forskjellige typer piler i TikZ}
-\begin{figure}[h!]
-\centering
-\begin{tikzpicture}
-    \draw[->, thick] (0,0) -- (4,0);
-    \draw[<-, thick] (0,0.5) -- (4,0.5);
-    \draw[|->, thick] (0,1) -- (4,1);
-    \draw[<->, thick] (0,1.5) -- (4,1.5);
-\end{tikzpicture}
-\caption{Forskjellige piler i TikZ.}
-\end{figure}
-
-\begin{Verbatim}[fontsize=\small, frame=single]
-\draw[<->] (0,1.5) -- (4,1.5);
-\draw[|->] (0,1) -- (4,1);
-\draw[<-]  (0,0.5) -- (4,0.5);
-\draw[->]  (0,0) -- (4,0);
-\end{Verbatim}
 
 
 \subsection{Noder}
@@ -357,6 +382,37 @@ Denne løkken går over linjene vi allerede har tegnet, og setter en liten strek
     \draw (\x cm, 2pt) -- (\x cm, -2pt) node[below] {$\x$};
   \foreach \y in {0,1,2,3,4}
     \draw (2pt, \y cm) -- (-2pt, \y cm) node[left] {$\y$};
+\end{tikzpicture}
+\end{Verbatim}
+
+\newpage
+
+\subsection{Eksempler med \texttt{sin} og \texttt{cos}}
+\begin{center}
+\begin{tikzpicture}
+    \draw[gray] (0,-3) grid (5,3);
+    \draw[red, thick] (0,0) sin (1,2) cos (2,0) sin (3,-2) cos (4,0);
+\end{tikzpicture}
+\end{center}
+
+\begin{Verbatim}[fontsize=\small, frame=single]
+\begin{tikzpicture}
+   \draw[gray] (0,-3) grid (5,3);
+   \draw[red]  (0,0) sin (1,2) cos (2,0) sin (3,-2) cos (4,0);
+\end{tikzpicture}
+\end{Verbatim}
+
+\begin{center}
+\begin{tikzpicture}
+    \draw[gray] (0,-3) grid (5,3);
+    \draw[red, thick] (0,0) sin (1,2) sin (2,0) sin (3,-2) sin (4,0);
+\end{tikzpicture}
+\end{center}
+
+\begin{Verbatim}[fontsize=\small, frame=single]
+\begin{tikzpicture}
+   \draw[gray] (0,-3) grid (5,3);
+   \draw[red] (0,0) sin (1,2) sin (2,0) sin (3,-2) sin (4,0);
 \end{tikzpicture}
 \end{Verbatim}
 
