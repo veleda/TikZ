@@ -13,6 +13,7 @@
 \usetikzlibrary{automata}
 \usetikzlibrary{shapes}
 \usetikzlibrary{circuits}
+\usetikzlibrary{graphs}
 
 \title{Tegnekurs i TikZ}
 \author{Veronika Heimsbakk \\ veronahe@ulrik.uio.no}
@@ -91,13 +92,13 @@ Vi kan også bruke nøkkelordet \texttt{rectangle}, og lage en kortversjon som g
 \subsection{Sirkel}
 \begin{center}
 \begin{tikzpicture}
-	\draw (2,2) circle (1.5cm);
+	\draw (2,2) circle (1cm);
 \end{tikzpicture}
 \end{center}
 
 Den første koordinaten er sirkelens sentrum, og lengden vi oppgir til slutt er sirkelens radius.
 \begin{Verbatim}[fontsize=\small]
-\draw (2,2) circle (1.5cm);
+\draw (2,2) circle (1cm);
 \end{Verbatim}
 
 \noindent Ellipser tegnes ved at vi oppgir radiusen i x- og y-retningene:
@@ -110,6 +111,8 @@ Den første koordinaten er sirkelens sentrum, og lengden vi oppgir til slutt er 
 \begin{Verbatim}[fontsize=\small]
 \draw (2,2) ellipse (2cm and 1cm);
 \end{Verbatim}
+
+\newpage 
 
 \subsection{Pynte litt}
 For å pynte litt på sirkelen vår, kan vi legge til noen ekstra argumenter til \texttt{\textbackslash draw}-kommandoen. For eksempel slik:
@@ -145,14 +148,27 @@ For å pynte litt på sirkelen vår, kan vi legge til noen ekstra argumenter til
 \begin{figure}[h!]
 \centering
 \begin{tikzpicture}
-	\fill[red] (0,0) rectangle (2,2) node[above left] {red};
-	\fill[green] (3,0) rectangle (5,2) node[above left] {green};
-	\fill[black] (6,0) rectangle (8,2) node[above left] {black};
-	\filldraw[white, draw=black, thin] (9,0) rectangle (11,2) node[above left] {white};
-	\fill[blue] (0,3) rectangle (2,5) node[above left] {blue};
-	\fill[cyan] (3,3) rectangle (5,5) node[above left] {cyan};
-	\fill[magenta] (6,3) rectangle (8,5) node[above left] {magenta};
-	\fill[yellow] (9,3) rectangle (11,5) node[above left] {yellow};
+	\fill[red] (0,4) rectangle (1,5) node[above left] {red};
+	\fill[violet] (2,4) rectangle (3,5) node[above left] {violet};
+	\fill[purple] (4,4) rectangle (5,5) node[above left] {purple};
+	\fill[magenta] (7,4) rectangle (6,5) node[above right] {magenta};
+	\fill[pink] (9,4) rectangle (8,5) node[above right] {pink};
+	\fill[white, draw=black, thin] (11,4) rectangle (10,5) node[above right] {white};
+
+	\fill[green] (0,2) rectangle (1,3) node[above left] {green};
+	\fill[lime] (2,2) rectangle (3,3) node[above left] {lime};
+	\fill[olive] (4,2) rectangle (5,3) node[above left] {olive};
+	\fill[orange] (7,2) rectangle (6,3) node[above right] {orange};
+	\fill[yellow] (9,2) rectangle (8,3) node[above right] {yellow};
+	\fill[brown] (11,2) rectangle (10,3) node[above right] {brown};
+
+	\fill[blue] (0,0) rectangle (1,1) node[above left] {blue};
+	\fill[cyan] (2,0) rectangle (3,1) node[above left] {cyan};
+	\fill[teal] (4,0) rectangle (5,1) node[above left] {teal};
+	\fill[lightgray] (7,0) rectangle (6,1) node[above left] {lightgray};
+	\fill[gray] (9,0) rectangle (8,1) node[above right] {gray};
+	\fill[darkgray] (11,0) rectangle (10,1) node[above right] {darkgray};
+	\fill[black] (13,0) rectangle (12,1) node[above right] {black};
 \end{tikzpicture}
 \caption{Mulige farger i TikZ.}
 \end{figure}
@@ -251,6 +267,27 @@ Dette eksempelet krever et rutenett, piler, noder og plassering av tall og bokst
 \end{Verbatim}
 
 \newpage
+
+\subsubsection{Forskjellige typer piler i TikZ}
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+    \draw[->, thick] (0,0) -- (4,0);
+    \draw[<-, thick] (0,0.5) -- (4,0.5);
+    \draw[|->, thick] (0,1) -- (4,1);
+    \draw[<->, thick] (0,1.5) -- (4,1.5);
+\end{tikzpicture}
+\caption{Forskjellige piler i TikZ.}
+\end{figure}
+
+\begin{Verbatim}[fontsize=\small, frame=single]
+\draw[<->] (0,1.5) -- (4,1.5);
+\draw[|->] (0,1) -- (4,1);
+\draw[<-]  (0,0.5) -- (4,0.5);
+\draw[->]  (0,0) -- (4,0);
+\end{Verbatim}
+
+
 \subsection{Noder}
 Vi kan legge på tekst (\textit{label}) ved å bruke nøkkelordet \texttt{node}. Vi plasserer teksten ved linjene vi har tegnet ved å fortelle noden hvor vi vil ha den.
 
@@ -624,7 +661,7 @@ Så kan man bygge treet ved å legge inn barna til roten, osv.:
 \end{tikzpicture}
 \end{center}
 
-Det fins enklere måter å tegne grafer på enn dette, men jeg syns denne måten er fin. Den krever heller ingen andre biblioteker eller pakker enn TikZ selv. Eksempel på en veldig mye enklere måte kommer på slutten av denne seksjonen.
+Det fins enklere måter å tegne grafer på enn dette, men jeg syns denne måten er fin. Den krever heller ingen andre biblioteker eller pakker enn TikZ selv. 
 
 Vi starter med å definere de forskjellige elementene til en graf.
 
@@ -869,6 +906,8 @@ Portens navn er valgfritt, og brukes kun i din egen kode.
 
 \subsection*{Lære mer?}
 \begin{itemize}
+	\item
+	\href{http://www.texample.net/media/pgf/builds/pgfmanualCVS2012-11-04.pdf}{TikZ \& PGF Manual}
 	\item
 	\href{https://www.sharelatex.com/blog/2013/09/02/tikz-series-pt4.html}{Introduksjon til Circuitikz}
 
