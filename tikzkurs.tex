@@ -14,10 +14,8 @@
 
 \usetikzlibrary{automata}
 \usetikzlibrary{shapes}
-\usetikzlibrary{circuits}
 \usetikzlibrary{mindmap}
 \usetikzlibrary{calendar}
-\usetikzlibrary{folding}
 
 \title{Tegnekurs i TikZ}
 \author{Veronika Heimsbakk \\ veronahe@ulrik.uio.no}
@@ -31,7 +29,10 @@
 
 %%% BASICS %%%
 \section{The Basics}
-For å kunne bruke pakken TikZ må man først inkludere \texttt{\textbackslash usepackage\{tikz\}} i dokumentet sitt. 
+For å kunne bruke pakken TikZ må man først inkludere pakken i dokumentet.
+\begin{Verbatim}[fontsize=\small]
+\usepackage{tikz}
+\end{Verbatim}
 
 \subsection{\texttt{tikzpicture}}
 Alle illustrasjoner som skal tegnes ved hjelp av pakken TikZ krever et miljø som heter \texttt{tikzpicture}.
@@ -42,8 +43,8 @@ Alle illustrasjoner som skal tegnes ved hjelp av pakken TikZ krever et miljø so
 \end{tikzpicture}
 \end{Verbatim}
 
+% Linjer
 \subsection{Linjer}
-
 \begin{center}
 \begin{tikzpicture}
 	\draw (0,2) -- (4,2);
@@ -62,17 +63,18 @@ En av de mest brukte TikZ kommandoene er \texttt{\textbackslash draw}. For å te
 \draw (0pt, 0.5cm) -- (4pt, 0.5cm);
 \end{Verbatim}
 
+% Kurver
 \subsection{Kurver}
 Vi bruker kontrollpunkter for å lage en kurvet linje. I eksempelet her, så starter vi i koordinatene \texttt{(-2,2)} og så tegner vi en kurve til første kontrollpunkt som er \texttt{(-1,0)}, så videre til \texttt{(1,0)}, og til slutt ender kurven opp i slutt-punktet som er \texttt{(2,2)}.
 
 \begin{center}
 \begin{tikzpicture}
-	\draw (-2,0) grid (2,2);
-	\draw[fill=red] (-2,2) circle (0.1cm);
-	\draw[fill=blue] (-1,0) circle (0.1cm);
-	\draw[fill=blue] (1,0) circle (0.1cm);
-	\draw[fill=red] (2,2) circle (0.1cm);
-	\draw (-2,2) .. controls (-1,0) and (1,0) .. (2,2);
+	\draw[black!50] (-2,0) grid (2,2);
+	\draw[fill=red!50] (-2,2) circle (0.1cm);
+	\draw[fill=blue!50] (-1,0) circle (0.1cm);
+	\draw[fill=blue!50] (1,0) circle (0.1cm);
+	\draw[fill=red!50] (2,2) circle (0.1cm);
+	\draw[black, very thick] (-2,2) .. controls (-1,0) and (1,0) .. (2,2);
 \end{tikzpicture}
 \end{center}
 
@@ -82,48 +84,91 @@ Vi bruker kontrollpunkter for å lage en kurvet linje. I eksempelet her, så sta
 
 \newpage
 
+% Kvadrat
 \subsection{Kvadrat}
-\noindent Videre kan vi bygge på og lage et kvadrat:
+Vi kan bygge på linjen vår og lage et kvadrat:
 \begin{center}
 \begin{tikzpicture}
-	\draw (0,0) rectangle (2,2);
+	\draw (0,0) rectangle (1.5,1.5);
 \end{tikzpicture}
 \end{center}
 
 \begin{Verbatim}[fontsize=\small]
-\draw (0,0) -- (2,0) -- (2,2) -- (0,2) -- (0,0);
+\draw (0,0) -- (1.5,0) -- (1.5,1,5) -- (0,1.5) -- (0,0);
 \end{Verbatim}
-
 Vi kan også bruke nøkkelordet \texttt{rectangle}, og lage en kortversjon som gjør akkurat det samme:
 \begin{Verbatim}[fontsize=\small]
-\draw (0,0) rectangle (2,2);
+\draw (0,0) rectangle (1.5,1.5);
 \end{Verbatim}
 
+% Sirkler
 \subsection{Sirkel}
 \begin{center}
 \begin{tikzpicture}
-	\draw (2,2) circle (1cm);
+	\draw (0,0) circle (1cm);
+	\draw(3,0) circle (1cm) circle (0.6cm) circle (0.2cm);
+	\draw(6,0) circle (1cm);
+	\draw(6.5,0) circle (0.5cm);
+	\draw (6,0.5) circle (0.5cm);
+	\draw(5.5,0) circle (0.5cm);
+	\draw(6,-0.5) circle (0.5cm);
 \end{tikzpicture}
 \end{center}
 
-Den første koordinaten er sirkelens sentrum, og lengden vi oppgir til slutt er sirkelens radius.
-\begin{Verbatim}[fontsize=\small]
-\draw (2,2) circle (1cm);
-\end{Verbatim}
+Den første koordinaten er sirkelens sentrum, og lengden vi oppgir til slutt er sirkelens radius. 
 
+\begin{Verbatim}[fontsize=\small]
+\draw (0,0) circle (1cm);
+\end{Verbatim}
+Hvordan tegnes figurene 
+\scalebox{0.2}{
+\begin{tikzpicture}
+	\draw(3,0) circle (1cm) circle (0.6cm) circle (0.2cm);
+\end{tikzpicture}
+} 
+og
+\scalebox{0.2}{
+\begin{tikzpicture}
+	\draw(6,0) circle (1cm);
+	\draw(6.5,0) circle (0.5cm);
+	\draw (6,0.5) circle (0.5cm);
+	\draw(5.5,0) circle (0.5cm);
+	\draw(6,-0.5) circle (0.5cm);
+\end{tikzpicture}
+} 
+?
+
+% Ellipser
+\subsection{Ellipse}
 \noindent Ellipser tegnes ved at vi oppgir radiusen i x- og y-retningene:
 \begin{center}
 \begin{tikzpicture}
-	\draw (2,2) ellipse (2cm and 1cm);
+	\draw (0,0) ellipse (2cm and 0.5cm);
 \end{tikzpicture}
 \end{center}
 
 \begin{Verbatim}[fontsize=\small]
-\draw (2,2) ellipse (2cm and 1cm);
+\draw (0,0) ellipse (2cm and 0.5cm);
 \end{Verbatim}
+
+% Arc
+\subsection{Buer}
+\begin{center}
+\begin{tikzpicture}
+	\draw (0,0) arc (0:180:1);
+\end{tikzpicture}
+\end{center}
+
+\noindent Buer (\texttt{arc}) skriver man på formen
+
+\begin{Verbatim}[fontsize=\small]
+\draw  (0,0) arc (0:180:1);
+\end{Verbatim}
+Hvor \texttt{(0,0)} er posisjonen. Og \texttt{(0:180:1)} betyr at vi skal tegne en bue fra 0 til 180 grader på en sirkel med radius 1.
 
 \newpage 
 
+% Pynte på sirkler
 \subsection{Pynte litt}
 For å pynte litt på sirkelen vår, kan vi legge til noen ekstra argumenter til \texttt{\textbackslash draw}-kommandoen. For eksempel slik:
 \begin{center}
@@ -138,7 +183,7 @@ For å pynte litt på sirkelen vår, kan vi legge til noen ekstra argumenter til
 \draw[green, thick] (6,2) circle (1cm);
 \end{Verbatim}
 
-
+% Tykkelser
 \subsection{Tykkelser}
 \begin{figure}[h!]
 \centering
@@ -150,12 +195,11 @@ For å pynte litt på sirkelen vår, kan vi legge til noen ekstra argumenter til
 	\draw[very thick] (0,2) -- (2,2) node[right] {very thick};'
 	\draw[ultra thick] (0,2.5) -- (2,2.5) node[right] {ultra thick};
 \end{tikzpicture}
-\caption{Mulige tykkelser i TikZ.}
+\caption{Tykkelser i TikZ.}
 \end{figure}
 
-
+% Farger
 \subsection{Farger}
-
 \begin{figure}[h!]
 \centering
 \scalebox{0.9}{
@@ -183,55 +227,97 @@ For å pynte litt på sirkelen vår, kan vi legge til noen ekstra argumenter til
 	\fill[black] (13,0) rectangle (12,1) node[above right] {black};
 \end{tikzpicture}
 }
-\caption{Mulige farger i TikZ.}
+\caption{Farger i TikZ.}
 \end{figure}
 
-
+% Bruke farger
 \subsection{Bruke farger}
 Vi kan også fylle formene våre ved å bruke kommandoen \texttt{\textbackslash fill}.
 
 \begin{center}
 \begin{tikzpicture}
-	\fill[red] (0,0) rectangle (2,2);
+	\fill[orange] (0,0) rectangle (2,2);
 \end{tikzpicture}
 \end{center}
 
 \begin{Verbatim}[fontsize=\small]
-\fill[red] (0,0) rectangle (2,2);
+\fill[orange] (0,0) rectangle (2,2);
 \end{Verbatim}
 
-\noindent Om vi ønsker å legge til en kant rundt kvadratet, kan vi bruke kommandoen \texttt{\textbackslash filldraw}. Her fyller vi kvadratet rødt og hvitt, 50/50.
+\noindent Om vi ønsker å legge til en kant rundt kvadratet, kan vi bruke kommandoen \texttt{\textbackslash filldraw}. Her fyller vi kvadratet oransje og hvitt, 50/50.
 
 \begin{center}
 \begin{tikzpicture}
-	\filldraw[red!50, draw=black, very thick] (0,0) rectangle (2,2);
+	\filldraw[orange!50, draw=black, very thick] (0,0) rectangle (2,2);
 \end{tikzpicture}
 \end{center}
 
 \begin{Verbatim}[fontsize=\small]
-\filldraw[red!50, draw=black, very thick] (0,0) rectangle (2,2);
+\filldraw[orange!50, draw=black, very thick] (0,0) rectangle (2,2);
 \end{Verbatim}
 
+% Gradient
 \subsubsection{Gradient}
 \noindent Vi har også gradient i TikZ, og det kan se slik ut:
 
 \begin{center}
 \begin{tikzpicture}
-	\shade[left color=black, right color=red] (0,0) rectangle (2,2);
-	\shade[top color=black, bottom color=red] (3,0) rectangle (5,2);
-	\shade[inner color=black, outer color=red] (6,0) rectangle (8,2);
+	\shade[left color=orange, right color=yellow] (0,0) rectangle (2,2);
+	\shade[top color=orange, bottom color=yellow] (3,0) rectangle (5,2);
+	\shade[inner color=orange, outer color=yellow] (6,0) rectangle (8,2);
 \end{tikzpicture}
 \end{center}
 
 \begin{Verbatim}[fontsize=\small]
-\shade[left color=black, right color=red]  (0,0) rectangle (2,2);
-\shade[top color=black, bottom color=red]  (0,0) rectangle (2,2);
-\shade[inner color=black, outer color=red] (0,0) rectangle (2,2);
+\shade[left color=orange, right color=yellow]  (0,0) rectangle (2,2);
+\shade[top color=orange, bottom color=yellow]  (3,0) rectangle (5,2);
+\shade[inner color=orange, outer color=yellow] (6,0) rectangle (8,2);
+\end{Verbatim}
+Hvordan tegner vi dette
+\scalebox{0.2}{
+\begin{tikzpicture}
+	\shade[inner color=orange, outer color=white] (6,0) rectangle (8,2);
+\end{tikzpicture}
+}
+?
+
+% Blande farger
+\subsubsection{Blande farger}
+Vi kan også blande farger i TikZ. Her kommer et eksempel.
+
+\begin{center}
+\begin{tabular}{ccccccc}
+\begin{tikzpicture}
+	\fill[orange!50] (0,0) rectangle (0.6,0.6);
+\end{tikzpicture}
+&
+\Huge{+}
+&
+\begin{tikzpicture}
+	\fill[yellow!80] (0,0) rectangle (0.6,0.6); 
+\end{tikzpicture}
+&
+\Huge{+}
+&
+\begin{tikzpicture}
+	\fill[red!20] (0,0) rectangle (0.6,0.6);
+\end{tikzpicture}
+&
+\Huge{=}
+&
+\begin{tikzpicture}
+	\fill[orange!50!yellow!80!red] (0,0) rectangle (0.6,0.6);
+\end{tikzpicture}
+\end{tabular}
+\end{center}
+
+\begin{Verbatim}[fontsize=\small]
+\fill[orange!50!yellow!80!red] (0,0) rectangle (0.6,0.6);
 \end{Verbatim}
 
 \newpage
 
-
+% Plotte funksjoner
 \subsection{Plotte funksjoner}
 Man kan også plotte funksjoner i TikZ. Da er det kjekt å kjenne til de forskjellige typer piler.
 
@@ -243,7 +329,7 @@ Man kan også plotte funksjoner i TikZ. Da er det kjekt å kjenne til de forskje
     \draw[|->, thick] (0,1) -- (4,1);
     \draw[<->, thick] (0,1.5) -- (4,1.5);
 \end{tikzpicture}
-\caption{Forskjellige piler i TikZ.}
+\caption{Piler i TikZ.}
 \end{figure}
 
 \begin{Verbatim}[fontsize=\small, frame=single]
@@ -253,6 +339,7 @@ Man kan også plotte funksjoner i TikZ. Da er det kjekt å kjenne til de forskje
 \draw[->]  (0,0) -- (4,0);
 \end{Verbatim}
 
+% plot
 \subsubsection{\texttt{plot}}
 \begin{center}
 \scalebox{1.2}{
@@ -272,6 +359,16 @@ Man kan også plotte funksjoner i TikZ. Da er det kjekt å kjenne til de forskje
 
 \texttt{domain} er rekkevidden av $x$ som blir plottet. I dette tilfellet plotter vi funksjonen $0.25 + x + x^2$. Legg merke til at det er parenteser rundt funksjonen som vi skal plotte \texttt{plot (\textbackslash x, \{function\})}.
 
+\vspace{10pt}
+
+\noindent Hvordan kan vi plotte dette
+\scalebox{0.2}{
+\begin{tikzpicture}
+\draw[red, thick] (0,0) sin (1,2) cos (2,0) sin (3,-2) cos (4,0) sin (5,2) cos (6,0) sin (7,-2) cos (8,0);
+\end{tikzpicture}
+}
+?
+
 \newpage
 
 %%% KOORDINATER %%%
@@ -290,8 +387,8 @@ Dette eksempelet krever et rutenett, piler, noder og plassering av tall og bokst
 \draw[step=1cm,gray!80,very thin] (-1.9,-1.9) grid (5.9,5.9);
 \end{Verbatim}
 
-
-\subsection{Piler/akser}
+% Akser
+\subsection{Akser}
 \noindent Videre trenger vi x-aksen og y-aksen. Dette er to linjer med piler i enden.
 
 \begin{center}
@@ -311,7 +408,7 @@ Dette eksempelet krever et rutenett, piler, noder og plassering av tall og bokst
 
 \newpage
 
-
+% Noder
 \subsection{Noder}
 Vi kan legge på tekst (\textit{label}) ved å bruke nøkkelordet \texttt{node}. Vi plasserer teksten ved linjene vi har tegnet ved å fortelle noden hvor vi vil ha den.
 
@@ -330,7 +427,7 @@ Vi kan legge på tekst (\textit{label}) ved å bruke nøkkelordet \texttt{node}.
 \draw[thick, ->] (0,0) -- (0,4.5) node[above left] {y axis};
 \end{Verbatim}
 
-
+% Løkker
 \subsection{Løkker}
 \noindent Vi kan fortsette med tallene som skal gå langs aksene ved å bruke løkker:
 \begin{center}
@@ -347,7 +444,6 @@ Vi kan legge på tekst (\textit{label}) ved å bruke nøkkelordet \texttt{node}.
 \end{tikzpicture}
 }
 \end{center}
-
 Denne løkken går over linjene vi allerede har tegnet, og setter en liten strek for hver centimeter. Og ved siden av linjen skriver vi et tall.
 
 \begin{Verbatim}[fontsize=\small, frame=single]
@@ -384,36 +480,23 @@ Denne løkken går over linjene vi allerede har tegnet, og setter en liten strek
 \end{tikzpicture}
 \end{Verbatim}
 
-\newpage
-
-\subsection{Eksempler med \texttt{sin} og \texttt{cos}}
-\begin{center}
-\begin{tikzpicture}
-    \draw[gray] (0,-3) grid (5,3);
-    \draw[red, thick] (0,0) sin (1,2) cos (2,0) sin (3,-2) cos (4,0);
-\end{tikzpicture}
-\end{center}
-
-\begin{Verbatim}[fontsize=\small, frame=single]
-\begin{tikzpicture}
-   \draw[gray] (0,-3) grid (5,3);
-   \draw[red]  (0,0) sin (1,2) cos (2,0) sin (3,-2) cos (4,0);
-\end{tikzpicture}
-\end{Verbatim}
+\noindent Hvordan kan vi tegne dette?
 
 \begin{center}
+\scalebox{0.7}{
 \begin{tikzpicture}
-    \draw[gray] (0,-3) grid (5,3);
-    \draw[red, thick] (0,0) sin (1,2) sin (2,0) sin (3,-2) sin (4,0);
-\end{tikzpicture}
-\end{center}
+    \draw[step=1cm,gray!80,very thin] (-1.9,-1.9) grid (5.9,5.9);
+    \draw[thick, ->] (0,0) -- (4.5,0) node[below right] {x axis};
+    \draw[thick, ->] (0,0) -- (0,4.5) node[above left] {y axis};
+ 	\draw[red, thick, domain=0:2] plot (\x, {\x*\x});
 
-\begin{Verbatim}[fontsize=\small, frame=single]
-\begin{tikzpicture}
-   \draw[gray] (0,-3) grid (5,3);
-   \draw[red] (0,0) sin (1,2) sin (2,0) sin (3,-2) sin (4,0);
+    \foreach \x in {0,1,2,3,4}
+	\draw (\x cm, 2pt) -- (\x cm, -2pt) node[below] {$\x$};
+    \foreach \y in {0,1,2,3,4}
+	\draw (2pt, \y cm) -- (-2pt, \y cm) node[left] {$\y$};
 \end{tikzpicture}
-\end{Verbatim}
+}
+\end{center}
 
 \newpage
 
@@ -466,7 +549,7 @@ child { node[opt.] {value} }
 
 \subsection{Justere avstand mellom noder}
 
-Når vi nå vil bygge videre og legge til tallet 6 under \texttt{child \{node \{3\}\}} vil vi krasje bort i 5. Da trenger vi å justere avstanden mellom søsken-noder.
+Når vi nå vil bygge videre og legge til tallet 6 under \texttt{child \{node \{3\}\}} vil vi overlappe 5. Da trenger vi å justere avstanden mellom søsken-noder.
 
 \vspace{20pt}
 
@@ -556,7 +639,7 @@ Man kan få forskjellige fasonger på noder ved å inkludere \texttt{\textbacksl
     \node[star,star points=10] {$p=9$};\\
     };
 \end{tikzpicture}
-\caption{Forskjellige fasonger på noder.}
+\caption{Fasonger på noder.}
 \end{figure}
 
 
@@ -641,7 +724,7 @@ Man kan få forskjellige fasonger på noder ved å inkludere \texttt{\textbacksl
 Å tegne trær på denne måten krever ingen tilleggsbiblioteker fra TikZ. Dette er et eksempel på tegning med egendefinerte noder. Dette gjør vi via \texttt{tikzset}, her kan vi gi stilen de forskjellige typer noder.
 \begin{Verbatim}[fontsize=\small, frame=single]
 \tikzset{
-   treenode/.style = {align=center, inner sep=0pt},
+   treenode/.style = {align=center},
 	
    % Sorte noder
    node_black/.style = {treenode, circle, white, 
@@ -689,6 +772,25 @@ child { node [node_black] {y} }
 child { node [node_null]  {z} }
 \end{Verbatim}
 
+\vspace{25pt}
+
+\noindent Hvordan kan vi tegne dette treet?
+\tikzset{
+	treenode/.style = {align=center, inner sep=0pt},
+  	star_node/.style = {treenode, star, black,fill=yellow, text width=0.5cm},
+	star_node_super/.style = {treenode, star, star points=9, white, fill=orange, font=\bfseries, text width=0.8cm},
+}
+\begin{center}
+\begin{tikzpicture}[->,level/.style={ sibling distance = 2cm, 
+                    level distance = 3cm }] 
+\node [star_node_super] {1}
+    child { node [star_node] {2} }
+    child { node [star_node] {3} }
+    child { node [star_node] {4} }
+; 
+\end{tikzpicture}
+\end{center}
+
 \newpage
 
 %%% GRAFER %%%
@@ -712,7 +814,6 @@ child { node [node_null]  {z} }
 	\draw[selected edge] (v1) -- (v2);
 \end{tikzpicture}
 \end{center}
-
 Det fins enklere måter å tegne grafer på enn dette, men jeg syns denne måten er fin. Den krever heller ingen andre biblioteker eller pakker enn TikZ selv. 
 
 Vi starter med å definere de forskjellige elementene til en graf.
@@ -726,7 +827,7 @@ Vi starter med å definere de forskjellige elementene til en graf.
     \tikzstyle{edge} = [-,black,line width=1pt]
 \end{tikzpicture}
 \end{Verbatim}
-Her fortelle vi at \texttt{vertex}er (eller noder), skal være sirkler. Markerte noder skal være fylt med rød farge.
+Her forteller vi at \texttt{vertex}er (eller noder), skal være sirkler. Markerte noder skal være fylt med rød farge.
 \begin{center}
 \begin{tikzpicture}[scale=2]
 	 \tikzstyle{vertex}=[circle,fill=black!10]
@@ -777,7 +878,7 @@ For å plassere nodene rundt om på arket sier man hvor man vil de skal være ve
 \end{tikzpicture}
 \end{Verbatim}
 
-\paragraph{Nodene} defineres ved å først bruke nøkkelordet \texttt{node}, så fortelle hvilken type node dette er. I dette tilfellet, så er det enten \texttt{vertex} eller \texttt{selected vertex} som vi har definert med \texttt{tikzstyle}. Nodens navn bruker man kun i egen kode, slik som når man skal tegne opp kantene. Koordinatene \texttt{(x,y)} forteller hvor vi vil plassere noden, og verdien er innholdet i noden.
+\paragraph{Nodene} defineres ved å først bruke nøkkelordet \texttt{node}, så fortelle hvilken type node dette er. I dette tilfellet, så er det enten \texttt{vertex} eller \texttt{selected vertex} som vi har definert med \texttt{tikzstyle}. Nodens navn bruker man kun i egen kode, når vi skal tegne opp kantene trenger vi disse navnene. Koordinatene \texttt{(x,y)} forteller hvor vi vil plassere noden, og verdien er innholdet i noden.
 \begin{Verbatim}[fontsize=\small]
 \node[type of node] (node name) at (x,y) {value};
 \end{Verbatim}
@@ -788,7 +889,22 @@ For å plassere nodene rundt om på arket sier man hvor man vil de skal være ve
 \draw[type of edge] (from node) -- (to node);
 \end{Verbatim}
 
-
+\noindent Hvordan kan vi tegne denne?
+\begin{center}
+\scalebox{0.3}{
+\begin{tikzpicture}
+\foreach \x in {1,...,8}{%
+	\pgfmathparse{(\x-1)*360/8}
+	\node[draw,circle,inner sep=0.25cm, fill=gray] (N-\x) at (\pgfmathresult:5.4cm) {};
+}
+\foreach \x in {1,...,8}{%
+	\foreach \y in {1,...,8}{%
+		\path (N-\x) edge[black,-] (N-\y);
+	}
+}
+\end{tikzpicture}
+}
+\end{center}
 
 \newpage
 
@@ -832,9 +948,7 @@ Denne måten å tegne automater på krever at man inkluderer
         (D) edge [loop above] node 	 {b,a} (D);
 \end{tikzpicture}
 \end{Verbatim}
-
-
-For denne måten å tegne automater på, så settes alle parametre som beskriver automaten i definisjonen til \texttt{tikzpicture}. 
+For denne måten å tegne automater på, så settes alle attributter som beskriver automaten i definisjonen til \texttt{tikzpicture}. 
 Her har automaten følgende egenskaper:
 \begin{center}
 \texttt{\{tikzpicture\}[->, auto, node distance=3cm, line width=0.2mm]}
@@ -890,7 +1004,7 @@ Her er en flittig 4-bever. Denne automaten dekker de fleste opsjoner.
   \path (A) edge node   	   {1 $\rightarrow$ 1,L}  (C)
 	(A) edge [bend left] node  {0 $\rightarrow$ 1,R}  (C)
 	(C) edge [bend left] node  {0 $\rightarrow$ 1,L}  (A)
-	(B) edge node 	     {1 $\rightarrow$ 0,R} (A)
+	(B) edge node 	     {1 $\rightarrow$ 0,R}  (A)
 	(B) edge [loop below] node {0 $\rightarrow$ 1,R}  (B)
 	(D) edge node 	     {1 $\rightarrow$ 1,L}  (B)
 	(C) edge node 	     {1 $\rightarrow$ 0,L}  (D)
@@ -1072,6 +1186,8 @@ Portens navn er valgfritt, og brukes kun i din egen kode.
 	\href{http://www.tug.org/TUGboat/tb30-2/tb95mertz.pdf}{A TikZ tutorial: Generating graphics in the spirit of \TeX}
 	\item
 	\href{http://www.texample.net/media/pgf/builds/pgfmanualCVS2012-11-04.pdf}{TikZ \& PGF Manual}
+	\item
+	\href{https://www.tug.org/pracjourn/2007-1/mertz/mertz.pdf}{Graphics with TikZ}
 \end{itemize}
 
 
