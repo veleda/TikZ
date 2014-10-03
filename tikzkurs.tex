@@ -15,7 +15,8 @@
 \usetikzlibrary{automata}
 \usetikzlibrary{shapes}
 \usetikzlibrary{circuits}
-\usetikzlibrary{graphs}
+\usetikzlibrary{mindmap}
+\usetikzlibrary{calendar}
 
 \title{Tegnekurs i TikZ}
 \author{Veronika Heimsbakk \\ veronahe@ulrik.uio.no}
@@ -898,8 +899,96 @@ Her er en flittig 4-bever. Denne automaten dekker de fleste opsjoner.
 
 \newpage
 
+%%% ANDRE TIKZ BIBLIOTEKER %%%
+\section{Forskjellige TikZ biblioteker}
+Som med automatene, er det flere andre TikZ-biblioteker som kan inkluderes. Her kommer noen eksempler.
+
+\subsection{\texttt{mindmap}}
+
+\begin{center}
+\scalebox{0.7}{
+\begin{tikzpicture}
+  \path[mindmap,concept color=violet,text=white]
+    node[concept] {TikZ-kurs}
+    [clockwise from=0]
+    child[concept color=purple] {
+      node[concept] {The Basics}
+      [clockwise from=90]
+      child { node[concept] {Fasonger} }
+      child { node[concept] {Farger} }
+    }  
+    child[concept color=cyan] {
+      node[concept] {Trær}
+      [clockwise from=-30]
+      child { node[concept] {Noder} 
+		child { node[concept] {Egendefinerte noder}}
+	}
+      child { node[concept] {Justere avstand} }
+    }
+    child[concept color=red] { node[concept] {Automater} }
+    child[concept color=orange] { node[concept] {Grafer} };
+\end{tikzpicture}
+}
+\end{center}
+
+\begin{Verbatim}[fontsize=\footnotesize, frame=single]
+\path[mindmap,concept color=violet,text=white]
+    node[concept] {TikZ-kurs}
+    [clockwise from=0]
+    child[concept color=purple] { 
+    node[concept] {The Basics} [clockwise from=90]
+        child { node[concept] {Fasonger} }
+        child { node[concept] {Farger} }
+    }  
+    child[concept color=cyan] {
+    node[concept] {Trær} [clockwise from=-20]
+        child { node[concept] {Noder} 
+            child { node[concept] {Egendefinerte noder}}
+        }
+        child { node[concept] {Justere avstand} }
+     }
+    child[concept color=red] { node[concept] {Automater} }
+    child[concept color=orange] { node[concept] {Grafer} };
+\end{Verbatim}
+
+\newpage
+
+\subsection{\texttt{calendar}}
+
+\begin{center}
+\begin{tikzpicture}[every day/.style={anchor=mid}]
+\calendar (mycalendar) [dates=2014-10-01 to 2014-10-31,week list, 
+					    month label above centered,
+					    month text=\textcolor{teal}{\%mt} \%y-] 
+					    if (Sunday) [red]
+					    if (equals=2014-10-06) {\draw[red,thick] (0,0) circle (7pt);};
+\end{tikzpicture}
+\end{center}
+
+\begin{Verbatim}[fontsize=\footnotesize, frame=single]
+\begin{tikzpicture}
+    \calendar (mycalendar) [dates=2014-10-01 to 2014-10-31,week list, 
+                            month label above centered]
+                            month text=\textcolor{teal}{\%mt} \%y-] 
+                            if (Sunday) [red]
+                            if (equals=2014-10-06) 
+                               {\draw[red,thick] (0,0) circle (7pt);};
+\end{tikzpicture}
+\end{Verbatim}
+
+\paragraph{Attributter} Attributter som vi gir kalenderen \texttt{mycalendar} er at den skal strekke seg fra 1. oktober 2014 til 31. oktober 2014. Den skal tegnes som lister av uker, og månedens navn skal skrives på toppen, sentrert. Vi sier også at tekstfargen til måneden skal være \textit{teal}, og at vi skal legge på året.
+
+\paragraph{If-setninger} Her har vi også et eksempel på \texttt{if}-setninger i TikZ. Disse er på formen
+\begin{Verbatim}[fontsize=\footnotesize, frame=single]
+if=(<condition>)<code or options> else<else code or options>
+\end{Verbatim}
+
+I dette eksempelet sier vi at \textit{hvis} dagen er en søndag, så skal teksten være rød. Og hvis datoen er 6. oktober 2014, så skal vi tegne en rød ring rundt denne.
+
+\newpage
+
 %%% LOGISKE PORTER %%%
-\section{Logiske porter}
+\section{Circuitikz}
 Noe som er kjekt å vite om er også logiske porter i Circuitikz. Dette får du ved å inkludere pakken:
 \begin{Verbatim}[fontsize=\small]
 \usepackage{circuitikz}
@@ -975,19 +1064,14 @@ Portens navn er valgfritt, og brukes kun i din egen kode.
 	\href{http://www.texample.net/tikz/examples/india-map/}{India map}
 \end{itemize}
 
-\subsection*{Lære mer?}
+\subsection{Kildeliste}
 \begin{itemize}
 	\item
+	\href{http://www.tug.org/TUGboat/tb30-2/tb95mertz.pdf}{A TikZ tutorial: Generating graphics in the spirit of \TeX}
+	\item
 	\href{http://www.texample.net/media/pgf/builds/pgfmanualCVS2012-11-04.pdf}{TikZ \& PGF Manual}
-	\item
-	\href{https://www.sharelatex.com/blog/2013/09/02/tikz-series-pt4.html}{Introduksjon til Circuitikz}
-
-	\item
-	\href{https://www.sharelatex.com/blog/2013/09/04/tikz-series-pt5.html}{Tankekart med TikZ}
-
-	\item
-	\href{https://www.sharelatex.com/blog/2013/08/28/tikz-series-pt2.html}{Generere TikZ-kode fra GeoGebra}
 \end{itemize}
+
 
 \subsection*{Visste du at..}
 Roger Antonsens bok «Logiske Metoder» er full av TikZ/PGF?
