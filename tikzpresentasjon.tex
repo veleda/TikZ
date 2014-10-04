@@ -88,6 +88,23 @@ Opprette miljøet:
 
 \end{frame}
 
+%%% THE BASICS : KURVER%%%
+\begin{frame}[fragile]
+\frametitle{The Basics -- kvadrat}
+\begin{center}
+\begin{tikzpicture}
+	\draw[black, very thick] (-2,2) .. controls (-1,0) and (1,0) .. (2,2);
+\end{tikzpicture}
+\end{center}
+
+\vspace{20pt}
+
+\begin{Verbatim}[fontsize=\small]
+\draw (-2,2) .. controls (-1,0) and (1,0) .. (2,2);
+\end{Verbatim}
+
+\end{frame}
+
 %%% THE BASICS : KVADRAT%%%
 \begin{frame}[fragile]
 \frametitle{The Basics -- kvadrat}
@@ -126,12 +143,12 @@ Opprette miljøet:
 \begin{itemize}
 \item
 \begin{Verbatim}[fontsize=\small]
-\draw (2,2) circle (1.5cm);
+\draw (0,0) circle (1.5cm);
 \end{Verbatim}
 
 \item
 \begin{Verbatim}[fontsize=\small]
-\draw (6,2) ellipse (2cm and 1cm);
+\draw (0,0) ellipse (2cm and 1cm);
 \end{Verbatim}
 \end{itemize}
 
@@ -152,12 +169,12 @@ Opprette miljøet:
 \begin{itemize}
 \item
 \begin{Verbatim}[fontsize=\small]
-\draw[red, very thick, dashed] (2,2) circle (1.5cm);
+\draw[red, very thick, dashed] (0,0) circle (1.5cm);
 \end{Verbatim}
 
 \item
 \begin{Verbatim}[fontsize=\small]
-\draw[green, thick] (6,2) circle (1.5cm);
+\draw[green, thick] (0,0) circle (1.5cm);
 \end{Verbatim}
 \end{itemize}
 
@@ -218,7 +235,7 @@ Opprette miljøet:
 \begin{center}
 \begin{center}
 \begin{tikzpicture}
-	\fill[red] (0,0) rectangle (3,3);
+	\fill[orange] (0,0) rectangle (2,2);
 \end{tikzpicture}
 \end{center}
 \end{center}
@@ -226,7 +243,7 @@ Opprette miljøet:
 \vspace{20pt}
 
 \begin{Verbatim}[fontsize=\small]
-\fill[red] (0,0) rectangle (3,3);
+\fill[orange] (0,0) rectangle (2,2);
 \end{Verbatim}
 
 \end{frame}
@@ -235,7 +252,7 @@ Opprette miljøet:
 \frametitle{The Basics -- fylle med farge og kant}
 \begin{center}
 \begin{tikzpicture}
-	\filldraw[red!50, draw=black, very thick] (0,0) rectangle (3,3);
+	\filldraw[orange!50, draw=black, very thick] (0,0) rectangle (2,2);
 \end{tikzpicture}
 \end{center}
 
@@ -243,7 +260,7 @@ Opprette miljøet:
 \vspace{20pt}
 
 \begin{Verbatim}[fontsize=\footnotesize]
-\filldraw[red!50, draw=black, very thick] (0,0) rectangle (3,3);
+\filldraw[orange!50, draw=black, very thick] (0,0) rectangle (2,2);
 \end{Verbatim}
 
 \end{frame}
@@ -252,18 +269,18 @@ Opprette miljøet:
 \frametitle{The Basics -- fylle med gradient}
 \begin{center}
 \begin{tikzpicture}
-	\shade[left color=black, right color=red] (0,0) rectangle (2,2);
-	\shade[top color=black, bottom color=red] (3,0) rectangle (5,2);
-	\shade[inner color=black, outer color=red] (6,0) rectangle (8,2);
+	\shade[left color=orange, right color=yellow] (0,0) rectangle (2,2);
+	\shade[top color=orange, bottom color=yellow] (3,0) rectangle (5,2);
+	\shade[inner color=orange, outer color=yellow] (6,0) rectangle (8,2);
 \end{tikzpicture}
 \end{center}
 
 \vspace{20pt}
 
 \begin{Verbatim}[fontsize=\footnotesize]
-\shade[left color=black, right color=red]  (0,0) rectangle (2,2);
-\shade[top color=black, bottom color=red]  (0,0) rectangle (2,2);
-\shade[inner color=black, outer color=red] (0,0) rectangle (2,2);
+\shade[left color=orange, right color=yellow] (0,0) rectangle (2,2);
+\shade[top color=orange, bottom color=yellow] (3,0) rectangle (5,2);
+\shade[inner color=orange, outer color=yellow] (6,0) rectangle (8,2);
 \end{Verbatim}
 
 \end{frame}
@@ -742,7 +759,7 @@ Markerte kanter (\texttt{selected edge})
 
 
 \begin{Verbatim}[fontsize=\footnotesize, frame=single]
-\begin{tikzpicture}[scale=5]
+\begin{tikzpicture}
     \tikzstyle{vertex}         = [circle,fill=black!10]
     \tikzstyle{selected vertex}= [vertex, fill=red!50]
 
