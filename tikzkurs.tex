@@ -8,8 +8,12 @@
 \usepackage{tgheros}
 \renewcommand*\familydefault{\sfdefault}
 
+\usepackage{xspace}
+\newcommand{\TikZ}{Ti\textit{k}Z\xspace}
+
 \usepackage{tikz}
 \usepackage{circuitikz}
+
 \usepackage{amsmath}
 
 \usetikzlibrary{automata}
@@ -17,7 +21,7 @@
 \usetikzlibrary{mindmap}
 \usetikzlibrary{calendar}
 
-\title{Tegnekurs i TikZ}
+\title{Tegnekurs i \TikZ}
 \author{Veronika Heimsbakk \\ veronahe@ulrik.uio.no}
 
 \begin{document}
@@ -29,13 +33,13 @@
 
 %%% BASICS %%%
 \section{The Basics}
-For å kunne bruke pakken TikZ må man først inkludere pakken i dokumentet.
+For å kunne bruke pakken \TikZ må man først inkludere pakken i dokumentet.
 \begin{Verbatim}[fontsize=\small]
 \usepackage{tikz}
 \end{Verbatim}
 
 \subsection{\texttt{tikzpicture}}
-Alle illustrasjoner som skal tegnes ved hjelp av pakken TikZ krever et miljø som heter \texttt{tikzpicture}.
+Alle illustrasjoner som skal tegnes ved hjelp av pakken \TikZ krever et miljø som heter \texttt{tikzpicture}.
 
 \begin{Verbatim}[fontsize=\small]
 \begin{tikzpicture}
@@ -54,7 +58,7 @@ Alle illustrasjoner som skal tegnes ved hjelp av pakken TikZ krever et miljø so
 \end{tikzpicture}
 \end{center}
 
-En av de mest brukte TikZ kommandoene er \texttt{\textbackslash draw}. For å tegne ei rett linje sier man hvor man vil tegne \textit{fra} og \textit{til}:
+En av de mest brukte \TikZ kommandoene er \texttt{\textbackslash draw}. For å tegne ei rett linje sier man hvor man vil tegne \textit{fra} og \textit{til}:
 
 \begin{Verbatim}[fontsize=\small, frame=single]
 \draw (0,2) -- (4,2);
@@ -195,7 +199,7 @@ For å pynte litt på sirkelen vår, kan vi legge til noen ekstra argumenter til
 	\draw[very thick] (0,2) -- (2,2) node[right] {very thick};'
 	\draw[ultra thick] (0,2.5) -- (2,2.5) node[right] {ultra thick};
 \end{tikzpicture}
-\caption{Tykkelser i TikZ.}
+\caption{Tykkelser i \TikZ.}
 \end{figure}
 
 % Farger
@@ -283,7 +287,7 @@ Hvordan tegner vi dette
 
 % Blande farger
 \subsubsection{Blande farger}
-Vi kan også blande farger i TikZ. Her kommer et eksempel.
+Vi kan også blande farger i \TikZ. Her kommer et eksempel.
 
 \begin{center}
 \begin{tabular}{ccccccc}
@@ -319,7 +323,7 @@ Vi kan også blande farger i TikZ. Her kommer et eksempel.
 
 % Plotte funksjoner
 \subsection{Plotte funksjoner}
-Man kan også plotte funksjoner i TikZ. Da er det kjekt å kjenne til de forskjellige typer piler.
+Man kan også plotte funksjoner i \TikZ. Da er det kjekt å kjenne til de forskjellige typer piler.
 
 \begin{figure}[h!]
 \centering
@@ -502,7 +506,7 @@ Denne løkken går over linjene vi allerede har tegnet, og setter en liten strek
 
 %%% TRÆR %%%
 \section{Trær}
-Et tre består av en rekke noder. Når vi tegner trær i TikZ starter vi med å definere rot-noden. Legg merke til attributtene vi git \texttt{tikzpicture}. Her sier vi at \texttt{every node} skal ha \textit{stilen} (\texttt{.style}) sirkel med sort strek.
+Et tre består av en rekke noder. Når vi tegner trær i \TikZ starter vi med å definere rot-noden. Legg merke til attributtene vi git \texttt{tikzpicture}. Her sier vi at \texttt{every node} skal ha \textit{stilen} (\texttt{.style}) sirkel med sort strek.
 
 \begin{center}
 \begin{tikzpicture}[every node/.style={circle, draw=black},level 2/.style={sibling distance=20mm},
@@ -721,7 +725,7 @@ Man kan få forskjellige fasonger på noder ved å inkludere \texttt{\textbacksl
 \end{tikzpicture}
 \end{center}
 
-Å tegne trær på denne måten krever ingen tilleggsbiblioteker fra TikZ. Dette er et eksempel på tegning med egendefinerte noder. Dette gjør vi via \texttt{tikzset}, her kan vi gi stilen de forskjellige typer noder.
+Å tegne trær på denne måten krever ingen tilleggsbiblioteker fra \TikZ. Dette er et eksempel på tegning med egendefinerte noder. Dette gjør vi via \texttt{tikzset}, her kan vi gi stilen de forskjellige typer noder.
 \begin{Verbatim}[fontsize=\small, frame=single]
 \tikzset{
    treenode/.style = {align=center},
@@ -814,7 +818,7 @@ child { node [node_null]  {z} }
 	\draw[selected edge] (v1) -- (v2);
 \end{tikzpicture}
 \end{center}
-Det fins enklere måter å tegne grafer på enn dette, men jeg syns denne måten er fin. Den krever heller ingen andre biblioteker eller pakker enn TikZ selv. 
+Det fins enklere måter å tegne grafer på enn dette, men jeg syns denne måten er fin. Den krever heller ingen andre biblioteker eller pakker enn \TikZ selv. 
 
 Vi starter med å definere de forskjellige elementene til en graf.
 
@@ -860,7 +864,7 @@ Her forteller vi at \texttt{vertex}er (eller noder), skal være sirkler. Markert
 For å plassere nodene rundt om på arket sier man hvor man vil de skal være ved hjelp at koordinater.
 
 \begin{Verbatim}[fontsize=\small, frame=single]
-\begin{tikzpicture}[scale=5]
+\begin{tikzpicture}
     \tikzstyle{vertex}          = [circle,fill=black!10]
     \tikzstyle{selected vertex} = [vertex, fill=red!50]
 
@@ -1015,8 +1019,8 @@ Her er en flittig 4-bever. Denne automaten dekker de fleste opsjoner.
 \newpage
 
 %%% ANDRE TIKZ BIBLIOTEKER %%%
-\section{Forskjellige TikZ biblioteker}
-Som med automatene, er det flere andre TikZ-biblioteker som kan inkluderes. Her kommer noen eksempler.
+\section{Forskjellige \TikZ biblioteker}
+Som med automatene, er det flere andre \TikZ-biblioteker som kan inkluderes. Her kommer noen eksempler.
 
 \subsection{\texttt{mindmap}}
 
@@ -1093,7 +1097,7 @@ Som med automatene, er det flere andre TikZ-biblioteker som kan inkluderes. Her 
 
 \paragraph{Attributter} Attributter som vi gir kalenderen \texttt{mycalendar} er at den skal strekke seg fra 1. oktober 2014 til 31. oktober 2014. Den skal tegnes som lister av uker, og månedens navn skal skrives på toppen, sentrert. Vi sier også at tekstfargen til måneden skal være \textit{teal}, og at vi skal legge på året.
 
-\paragraph{If-setninger} Her har vi også et eksempel på \texttt{if}-setninger i TikZ. Disse er på formen
+\paragraph{If-setninger} Her har vi også et eksempel på \texttt{if}-setninger i \TikZ. Disse er på formen
 \begin{Verbatim}[fontsize=\footnotesize, frame=single]
 if=(<condition>)<code or options> else<else code or options>
 \end{Verbatim}
@@ -1109,7 +1113,7 @@ Noe som er kjekt å vite om er også logiske porter i Circuitikz. Dette får du 
 \begin{Verbatim}[fontsize=\small]
 \usepackage{circuitikz}
 \end{Verbatim}
-Siden dette \textit{ikke} er TikZ jobber vi ikke i miljøet \texttt{tikzpicture}, men i miljøet \texttt{circuitikz}.
+Siden dette \textit{ikke} er \TikZ jobber vi ikke i miljøet \texttt{tikzpicture}, men i miljøet \texttt{circuitikz}.
 
 \begin{Verbatim}[fontsize=\small, frame=single]
 \begin{circuitikz} \draw
@@ -1180,18 +1184,20 @@ Portens navn er valgfritt, og brukes kun i din egen kode.
 \subsection{Nyttige lenker}
 \begin{itemize}
 	\item
-	\href{http://www.tug.org/TUGboat/tb30-2/tb95mertz.pdf}{A TikZ tutorial: Generating graphics in the spirit of \TeX}
+	\href{http://www.tug.org/TUGboat/tb30-2/tb95mertz.pdf}{A \TikZ tutorial: Generating graphics in the spirit of \TeX}
 	\item
-	\href{http://www.texample.net/media/pgf/builds/pgfmanualCVS2012-11-04.pdf}{TikZ \& PGF Manual}
+	\href{http://www.texample.net/media/pgf/builds/pgfmanualCVS2012-11-04.pdf}{\TikZ \& PGF Manual}
 	\item
-	\href{https://www.tug.org/pracjourn/2007-1/mertz/mertz.pdf}{Graphics with TikZ}
+	\href{https://www.tug.org/pracjourn/2007-1/mertz/mertz.pdf}{Graphics with \TikZ}
 	\item
 	\href{http://www.texample.net/}{TeXample.net}
+	\item
+	\href{http://tug.org/}{\TeX Users Group (tug.org)}
 \end{itemize}
 
 
 \subsection*{Visste du at..}
-Roger Antonsens bok «Logiske Metoder» er full av TikZ/PGF?
+Roger Antonsens bok «Logiske Metoder» er full av \TikZ/PGF?
 
 
 \end{document}
