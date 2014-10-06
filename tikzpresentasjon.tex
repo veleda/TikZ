@@ -289,35 +289,19 @@ Opprette miljøet:
 \begin{frame}[fragile]
 \frametitle{The Basics -- blande farger}
 \begin{center}
-\begin{tabular}{ccccccc}
 \begin{tikzpicture}
-	\fill[orange!50] (0,0) rectangle (1,1);
+	\fill[blue!50] (0,0) rectangle (2,2);
+	\node[black] (1) at (2.5,1) {\Huge{+}};
+	\fill[orange!50] (3,0) rectangle (5,2);
+	\node[black] (1) at (5.5,1) {\Huge{=}};
+	\fill[blue!50!orange] (6,0) rectangle (8,2);
 \end{tikzpicture}
-&
-\Huge{+}
-&
-\begin{tikzpicture}
-	\fill[yellow!80] (0,0) rectangle (1,1); 
-\end{tikzpicture}
-&
-\Huge{+}
-&
-\begin{tikzpicture}
-	\fill[red!20] (0,0) rectangle (1,1);
-\end{tikzpicture}
-&
-\Huge{=}
-&
-\begin{tikzpicture}
-	\fill[orange!50!yellow!80!red] (0,0) rectangle (1,1);
-\end{tikzpicture}
-\end{tabular}
 \end{center}
 
 \vspace{20pt}
 
 \begin{Verbatim}[fontsize=\small]
-\fill[orange!50!yellow!80!red] (0,0) rectangle (0.6,0.6);
+\fill[blue!50!orange] (0,0) rectangle (0,0);
 \end{Verbatim}
 
 \end{frame}
