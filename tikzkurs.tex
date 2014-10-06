@@ -4,12 +4,15 @@
 \usepackage[norsk]{babel}
 \usepackage{hyperref}
 \usepackage{fancyvrb}
+\usepackage{marginnote}
 
 \usepackage{tgheros}
 \renewcommand*\familydefault{\sfdefault}
 
 \usepackage{xspace}
 \newcommand{\TikZ}{Ti\textit{k}Z\xspace}
+
+\newcommand\Oppgave{\reversemarginpar\marginnote {\textbf{\textcolor{orange}{Oppgave}}}}
 
 \usepackage{tikz}
 \usepackage{circuitikz}
@@ -29,6 +32,15 @@
 \maketitle
 \tableofcontents
 \listoffigures
+
+
+\section*{Introduksjon}
+Dette er et «kompendie», eller et sammendrag av «Tegnekurs i TeX» arrangert av studentforeningen \{ProgNett\} 6. oktober 2014 ved Institutt for informatikk, Universitetet i Oslo.
+
+Dokumentet du nå leser er lagt opp slik at du skal kjenne til \TeX/\LaTeX fra før, men ikke nødvendigvis pakken \TikZ. Per dags dato, \today, så fins ingen engelsk versjon av dette dokumentet. Men det er underveis.
+
+Hvis du har spørsmål, finner feil, eller har andre tilbakemeldinger. Send dette til forfatteren Veronika Heimsbakk, \href{mailto:veronahe@ulrik.uio.no}{veronahe@ulrik.uio.no}.
+
 \newpage
 
 %%% BASICS %%%
@@ -124,6 +136,7 @@ Den første koordinaten er sirkelens sentrum, og lengden vi oppgir til slutt er 
 \begin{Verbatim}[fontsize=\small]
 \draw (0,0) circle (1cm);
 \end{Verbatim}
+\Oppgave
 Hvordan tegnes figurene 
 \scalebox{0.2}{
 \begin{tikzpicture}
@@ -279,6 +292,7 @@ Vi kan også fylle formene våre ved å bruke kommandoen \texttt{\textbackslash 
 \shade[top color=orange, bottom color=yellow]  (3,0) rectangle (5,2);
 \shade[inner color=orange, outer color=yellow] (6,0) rectangle (8,2);
 \end{Verbatim}
+\Oppgave
 Hvordan tegner vi dette
 \scalebox{0.2}{
 \begin{tikzpicture}
@@ -356,10 +370,11 @@ Man kan også plotte funksjoner i \TikZ. Da er det kjekt å kjenne til de forskj
 
 \vspace{10pt}
 
+\Oppgave
 \noindent Hvordan kan vi plotte dette
-\scalebox{0.2}{
+\scalebox{0.1}{
 \begin{tikzpicture}
-\draw[red, thick] (0,0) sin (1,2) cos (2,0) sin (3,-2) cos (4,0) sin (5,2) cos (6,0) sin (7,-2) cos (8,0);
+\draw[red, ultra thick] (0,0) sin (1,2) cos (2,0) sin (3,-2) cos (4,0) sin (5,2) cos (6,0) sin (7,-2) cos (8,0);
 \end{tikzpicture}
 }
 ?
@@ -447,6 +462,7 @@ Denne løkken går over linjene vi allerede har tegnet, og setter en liten strek
 \foreach \y in {0,1,2,3,4}
   \draw (2pt, \y cm) -- (-2pt, \y cm) node[left]  {$\y$};
 \end{Verbatim}
+\Oppgave
 Hvordan kan vi bruke \texttt{foreach} til å tegne dette
 \scalebox{0.4}{
 \begin{tikzpicture}
@@ -483,6 +499,7 @@ Hvordan kan vi bruke \texttt{foreach} til å tegne dette
 \end{tikzpicture}
 \end{Verbatim}
 
+\Oppgave
 \noindent Hvordan kan vi tegne dette?
 
 \begin{center}
@@ -777,6 +794,7 @@ child { node [node_null]  {z} }
 
 \vspace{25pt}
 
+\Oppgave
 \noindent Hvordan kan vi tegne dette treet?
 \tikzset{
 	treenode/.style = {align=center, inner sep=0pt},
@@ -881,20 +899,25 @@ For å plassere nodene rundt om på arket sier man hvor man vil de skal være ve
 \end{tikzpicture}
 \end{Verbatim}
 
-\paragraph{Nodene} defineres ved å først bruke nøkkelordet \texttt{node}, så fortelle hvilken type node dette er. I dette tilfellet, så er det enten \texttt{vertex} eller \texttt{selected vertex} som vi har definert med \texttt{tikzstyle}. Nodens navn bruker man kun i egen kode, når vi skal tegne opp kantene trenger vi disse navnene. Koordinatene \texttt{(x,y)} forteller hvor vi vil plassere noden, og verdien er innholdet i noden.
+% Noder
+\subsection{Noder} 
+Nodene defineres ved å først bruke nøkkelordet \texttt{node}, så fortelle hvilken type node dette er. I dette tilfellet, så er det enten \texttt{vertex} eller \texttt{selected vertex} som vi har definert med \texttt{tikzstyle}. Nodens navn bruker man kun i egen kode, når vi skal tegne opp kantene trenger vi disse navnene. Koordinatene \texttt{(x,y)} forteller hvor vi vil plassere noden, og verdien er innholdet i noden.
 \begin{Verbatim}[fontsize=\small]
 \node[type of node] (node name) at (x,y) {value};
 \end{Verbatim}
 
-\paragraph{Kantene} tegnes likt som linjer fra seksjon 1. Men her gir vi nøkkelordet \texttt{draw} en av to stiler, som vi definerte med \texttt{tikzstyle}. Enten \texttt{edge} eller \texttt{selected egde}.
+% Kanter
+\subsection{Kanter}
+Kantene tegnes likt som linjer fra seksjon 1. Men her gir vi nøkkelordet \texttt{draw} en av to stiler, som vi definerte med \texttt{tikzstyle}. Enten \texttt{edge} eller \texttt{selected egde}.
 
 \begin{Verbatim}[fontsize=\small]
 \draw[type of edge] (from node) -- (to node);
 \end{Verbatim}
 
+\Oppgave
 \noindent Hvordan kan vi tegne denne?
 \begin{center}
-\scalebox{0.3}{
+\scalebox{0.2}{
 \begin{tikzpicture}
 \foreach \x in {1,...,8}{%
 	\pgfmathparse{(\x-1)*360/8}
