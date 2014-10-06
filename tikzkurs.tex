@@ -12,7 +12,7 @@
 \usepackage{xspace}
 \newcommand{\TikZ}{Ti\textit{k}Z\xspace}
 
-\newcommand\Oppgave{\reversemarginpar\marginnote {\textbf{\textcolor{orange}{Oppgave}}}}
+\newcommand\Oppgave{\reversemarginpar\marginnote {\textcolor{orange}{Utfordring}}}
 
 \usepackage{tikz}
 \usepackage{circuitikz}
@@ -78,6 +78,7 @@ En av de mest brukte \TikZ kommandoene er \texttt{\textbackslash draw}. For å t
 \draw (0em, 1cm) -- (4em, 1cm);
 \draw (0pt, 0.5cm) -- (4pt, 0.5cm);
 \end{Verbatim}
+Koordinatene \texttt{(0,2)} sier at vi skal starte linjen i $x=0$ og $y=2$.
 
 % Kurver
 \subsection{Kurver}
@@ -187,7 +188,7 @@ Hvor \texttt{(0,0)} er posisjonen. Og \texttt{(0:180:1)} betyr at vi skal tegne 
 
 % Pynte på sirkler
 \subsection{Pynte litt}
-For å pynte litt på sirkelen vår, kan vi legge til noen ekstra argumenter til \texttt{\textbackslash draw}-kommandoen. For eksempel slik:
+For å pynte litt på sirkelen vår, kan vi legge til noen ekstra argumenter på \texttt{\textbackslash draw}-kommandoen. For eksempel slik:
 \begin{center}
 \begin{tikzpicture}
 	\draw[red, thick, dashed] (2,2) circle (1cm);
@@ -253,14 +254,14 @@ For å pynte litt på sirkelen vår, kan vi legge til noen ekstra argumenter til
 	\fill[darkgray] (11,0) rectangle (10,1) node[above right] {darkgray};
 	\fill[black] (13,0) rectangle (12,1) node[above right] {black};
 \end{tikzpicture}
-\caption{Farger i TikZ.}
+\caption{Farger i \TikZ.}
 \end{figure}
 
 \newpage
 
 % Bruke farger
 \subsection{Fylle med farge}
-Vi kan også fylle formene våre ved å bruke kommandoen \texttt{\textbackslash fill}.
+Vi kan også fylle formene våre med farger ved å bruke kommandoen \texttt{\textbackslash fill}.
 Ønsker vi å legge til en kant rundt kvadratet, kan vi bruke kommandoen \texttt{\textbackslash filldraw}.
 
 \begin{center}
@@ -277,7 +278,7 @@ Vi kan også fylle formene våre ved å bruke kommandoen \texttt{\textbackslash 
 
 % Gradient
 \subsubsection{Gradient}
-\noindent Vi har også gradient i TikZ, og det kan se slik ut:
+\noindent Vi har også gradient i \TikZ, og det kan se slik ut:
 
 \begin{center}
 \begin{tikzpicture}
@@ -303,7 +304,7 @@ Hvordan tegner vi dette
 
 % Blande farger
 \subsubsection{Blande farger}
-Vi kan også blande farger i \TikZ. Her blander vi 50\% blå og 50\% orange med hverandre.
+Vi kan også blande farger i \TikZ. Her blander vi 50\% blå og 50\% oransje med hverandre.
 
 \begin{center}
 \begin{tikzpicture}
@@ -522,7 +523,7 @@ Hvordan kan vi bruke \texttt{foreach} til å tegne dette
 
 %%% TRÆR %%%
 \section{Trær}
-Et tre består av en rekke noder. Når vi tegner trær i \TikZ starter vi med å definere rot-noden. Legg merke til attributtene vi git \texttt{tikzpicture}. Her sier vi at \texttt{every node} skal ha \textit{stilen} (\texttt{.style}) sirkel med sort strek.
+Et tre består av en rekke noder. Når vi tegner trær i \TikZ starter vi med å definere rot-noden. Legg merke til attributtene vi gir \texttt{tikzpicture}. Her sier vi at \texttt{every node} skal ha \textit{stilen} (\texttt{.style}) sirkel med sort strek.
 
 \begin{center}
 \begin{tikzpicture}[every node/.style={circle, draw=black},level 2/.style={sibling distance=20mm},
@@ -564,6 +565,7 @@ child { node[opt.] {value} }
     child { node {3} }
 ;
 \end{Verbatim}
+\texttt{[opt.]} i definisjonen av \texttt{node} sier noe om hvordan noden skal se ut. Her kan vi for eksempel skrive \texttt{node[red]}, så får vi at denne ene noden skal være rød. 
 
 \newpage
 
@@ -629,7 +631,8 @@ Her forteller vi at stilen til nodene på \texttt{level 1} skal være at de har 
 
 \newpage
 
-\subsection{Former som noder kan ha}
+% Fasonger på noder
+\subsection{Fasonger som noder kan ha}
 Man kan få forskjellige fasonger på noder ved å inkludere \texttt{\textbackslash usetikzlibrary\{shapes\}}. Her er en oversikt over forskjellige fasonger en node kan ha. For å få ønsket fasong skriver man noden på denne formen:
 \begin{Verbatim}[fontsize=\small, frame=single]
 \node[rectangle] {Rectangle};
@@ -661,7 +664,6 @@ Man kan få forskjellige fasonger på noder ved å inkludere \texttt{\textbacksl
 \end{tikzpicture}
 \caption{Fasonger på noder.}
 \end{figure}
-
 
 \newpage
 
@@ -741,7 +743,7 @@ Man kan få forskjellige fasonger på noder ved å inkludere \texttt{\textbacksl
 \end{tikzpicture}
 \end{center}
 
-Å tegne trær på denne måten krever ingen tilleggsbiblioteker fra \TikZ. Dette er et eksempel på tegning med egendefinerte noder. Dette gjør vi via \texttt{tikzset}, her kan vi gi stilen de forskjellige typer noder.
+Å tegne trær på denne måten krever ingen tilleggsbiblioteker fra \TikZ. Dette er et eksempel på tegning med egendefinerte noder. Dette gjør vi via \texttt{tikzset}, her kan vi gi stilen de forskjellige typene noder.
 \begin{Verbatim}[fontsize=\small, frame=single]
 \tikzset{
    treenode/.style = {align=center},
@@ -878,7 +880,7 @@ Her forteller vi at \texttt{vertex}er (eller noder), skal være sirkler. Markert
 
 \newpage
 \subsection{Tegne grafen} 
-For å plassere nodene rundt om på arket sier man hvor man vil de skal være ved hjelp at koordinater.
+For å plassere nodene rundt om på arket sier man hvor man vil de skal være ved hjelp av koordinater.
 
 \begin{Verbatim}[fontsize=\small, frame=single]
 \begin{tikzpicture}
@@ -936,7 +938,7 @@ Kantene tegnes likt som linjer fra seksjon 1. Men her gir vi nøkkelordet \textt
 
 %%% AUTOMATER %%%
 \section{Automater}
-Denne måten å tegne automater på krever at man inkluderer
+Denne måten å tegne automater på krever at man inkluderer et \TikZ-bibliotek.
 \begin{Verbatim}[fontsize=\small]
 \usetikzlibrary{automata}
 \end{Verbatim}
@@ -979,7 +981,7 @@ Her har automaten følgende egenskaper:
 \begin{center}
 \texttt{\{tikzpicture\}[->, auto, node distance=3cm, line width=0.2mm]}
 \end{center}
-Dette forteller oss at automaten skal tegnes med piler (\texttt{->}), nodene skal ha avstand på 3 cm, og linjene en tykkelse på 0,2 mm. Auto stiller teksten \textit{over} linjene, i stedet for \textit{på} linjene.
+Dette forteller oss at automaten skal tegnes med piler (\texttt{->}), nodene skal ha avstand på 3 cm, og linjene en tykkelse på 0,2 mm. \texttt{auto} stiller teksten \textit{over} linjene, i stedet for \textit{på} linjene.
 
 \subsection{Automatens tilstander} En automat har tre typer tilstander: starttilstanden, vanlig tilstand(er), og akepterende tilstand(er).
 
