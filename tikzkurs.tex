@@ -189,8 +189,7 @@ For å pynte litt på sirkelen vår, kan vi legge til noen ekstra argumenter til
 
 % Tykkelser
 \subsection{Tykkelser}
-\begin{figure}[h!]
-\centering
+\begin{minipage}{0.4\textwidth}
 \begin{tikzpicture}
 	\draw[ultra thin] (0,0) -- (2,0) node[right] {ultra thin};
 	\draw[very thin] (0,0.5) -- (2,0.5) node[right] {very thin};
@@ -199,14 +198,25 @@ For å pynte litt på sirkelen vår, kan vi legge til noen ekstra argumenter til
 	\draw[very thick] (0,2) -- (2,2) node[right] {very thick};'
 	\draw[ultra thick] (0,2.5) -- (2,2.5) node[right] {ultra thick};
 \end{tikzpicture}
-\caption{Tykkelser i \TikZ.}
-\end{figure}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+\noindent Man kan også definere egne tykkelser ved å bruke \texttt{line width}.
+\begin{center}
+\begin{tikzpicture}
+	\draw[line width=10pt] (0,0) -- (2,0);
+\end{tikzpicture}
+\end{center}
+\begin{Verbatim}[fontsize=\small]
+\draw[line width=10pt] (0,0) -- (2,0);
+\end{Verbatim}
+\end{minipage}
+
+
 
 % Farger
 \subsection{Farger}
 \begin{figure}[h!]
 \centering
-\scalebox{0.9}{
 \begin{tikzpicture}
 	\fill[red] (0,4) rectangle (1,5) node[above left] {red};
 	\fill[violet] (2,4) rectangle (3,5) node[above left] {violet};
@@ -230,34 +240,26 @@ For å pynte litt på sirkelen vår, kan vi legge til noen ekstra argumenter til
 	\fill[darkgray] (11,0) rectangle (10,1) node[above right] {darkgray};
 	\fill[black] (13,0) rectangle (12,1) node[above right] {black};
 \end{tikzpicture}
-}
 \caption{Farger i TikZ.}
 \end{figure}
 
+\newpage
+
 % Bruke farger
-\subsection{Bruke farger}
+\subsection{Fylle med farge}
 Vi kan også fylle formene våre ved å bruke kommandoen \texttt{\textbackslash fill}.
+Ønsker vi å legge til en kant rundt kvadratet, kan vi bruke kommandoen \texttt{\textbackslash filldraw}.
 
 \begin{center}
 \begin{tikzpicture}
 	\fill[orange] (0,0) rectangle (2,2);
+	\filldraw[orange, draw=black, very thick] (3,0) rectangle (5,2);
 \end{tikzpicture}
 \end{center}
 
 \begin{Verbatim}[fontsize=\small]
 \fill[orange] (0,0) rectangle (2,2);
-\end{Verbatim}
-
-\noindent Om vi ønsker å legge til en kant rundt kvadratet, kan vi bruke kommandoen \texttt{\textbackslash filldraw}. Her fyller vi kvadratet oransje og hvitt, 50/50.
-
-\begin{center}
-\begin{tikzpicture}
-	\filldraw[orange!50, draw=black, very thick] (0,0) rectangle (2,2);
-\end{tikzpicture}
-\end{center}
-
-\begin{Verbatim}[fontsize=\small]
-\filldraw[orange!50, draw=black, very thick] (0,0) rectangle (2,2);
+\filldraw[orange, draw=black, very thick] (3,0) rectangle (5,2);
 \end{Verbatim}
 
 % Gradient
@@ -287,37 +289,26 @@ Hvordan tegner vi dette
 
 % Blande farger
 \subsubsection{Blande farger}
-Vi kan også blande farger i \TikZ. Her kommer et eksempel.
+Vi kan også blande farger i \TikZ. Her blander vi 50\% blå og 50\% orange med hverandre.
 
 \begin{center}
-\begin{tabular}{ccccccc}
 \begin{tikzpicture}
-	\fill[orange!50] (0,0) rectangle (0.6,0.6);
+	\fill[blue!50] (0,0) rectangle (2,2);
+	\node[black] (1) at (2.5,1) {\Huge{+}};
+	\fill[orange!50] (3,0) rectangle (5,2);
+	\node[black] (1) at (5.5,1) {\Huge{=}};
+	\fill[blue!50!orange] (6,0) rectangle (8,2);
 \end{tikzpicture}
-&
-\Huge{+}
-&
-\begin{tikzpicture}
-	\fill[yellow!80] (0,0) rectangle (0.6,0.6); 
-\end{tikzpicture}
-&
-\Huge{+}
-&
-\begin{tikzpicture}
-	\fill[red!20] (0,0) rectangle (0.6,0.6);
-\end{tikzpicture}
-&
-\Huge{=}
-&
-\begin{tikzpicture}
-	\fill[orange!50!yellow!80!red] (0,0) rectangle (0.6,0.6);
-\end{tikzpicture}
-\end{tabular}
 \end{center}
 
 \begin{Verbatim}[fontsize=\small]
-\fill[orange!50!yellow!80!red] (0,0) rectangle (0.6,0.6);
+\fill[blue!50!orange] (6,0) rectangle (8,2);
 \end{Verbatim}
+Når vi skriver 
+\begin{Verbatim}[fontsize=\small]
+\fill[blue!50] (0,0) rectangle (2,2);
+\end{Verbatim}
+så blander vi 50\% blå med 50\% hvit.
 
 \newpage
 
@@ -456,6 +447,14 @@ Denne løkken går over linjene vi allerede har tegnet, og setter en liten strek
 \foreach \y in {0,1,2,3,4}
   \draw (2pt, \y cm) -- (-2pt, \y cm) node[left]  {$\y$};
 \end{Verbatim}
+Hvordan kan vi bruke \texttt{foreach} til å tegne dette
+\scalebox{0.4}{
+\begin{tikzpicture}
+\foreach \x in {1,...,10}
+	\draw[fill=orange] (\x, 0) circle (0.4cm);
+\end{tikzpicture}
+}
+?
 
 \subsection{Hele koden for koordinatsystemet}
 \begin{center}
