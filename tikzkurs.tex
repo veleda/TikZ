@@ -962,7 +962,7 @@ Denne måten å tegne automater på krever at man inkluderer et \TikZ-bibliotek.
 
 \begin{Verbatim}[fontsize=\small, frame=single]
 \begin{tikzpicture}[->,auto,node distance=3cm,line width=0.2mm]
-  \node[initial,state   (A) 		{$q_1$};
+  \node[initial,state]  (A) 		{$q_1$};
   \node[state]          (B) [right of=A]    {$q_2$};
   \node[state]	  (C) [right of=B]    {$q_3$};
   \node[state,accepting](D) [right of=C]    {$q_4$};
