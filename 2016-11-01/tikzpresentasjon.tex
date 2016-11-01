@@ -939,22 +939,21 @@ Må inkludere \texttt{\textbackslash usetikzlibrary\{automata\}}.
 
 \begin{center}
 \begin{tikzpicture}[every day/.style={anchor=mid}]
-\calendar (mycalendar) [dates=2014-10-01 to 2014-10-31,week list, 
+\calendar (mycalendar) [dates=2016-11-01 to 2016-11-30,week list, 
 					    month label above centered,
 					    month text=\textcolor{teal}{\%mt} \%y-] 
 					    if (Sunday) [red]
-					    if (equals=2014-10-06) {\draw[red,thick] (0,0) circle (7pt);};
+					    if (equals=2016-11-01) {\draw[red,thick] (0,0) circle (7pt);};
 \end{tikzpicture}
 \end{center}
 
 \begin{Verbatim}[fontsize=\scriptsize, frame=single]
 \begin{tikzpicture}
-\calendar (mycalendar) [dates=2014-10-01 to 2014-10-31,week list, 
-                        month label above centered]
-                        month text=\textcolor{teal}{\%mt} \%y-] 
-                        if (Sunday) [red]
-                        if (equals=2014-10-06) 
-                            {\draw[red,thick] (0,0) circle (7pt);};
+\calendar (mycalendar) [dates=2016-11-01 to 2016-11-30,week list, 
+					    month label above centered,
+					    month text=\textcolor{teal}{\%mt} \%y-] 
+					    if (Sunday) [red]
+					    if (equals=2016-11-01) {\draw[red,thick] (0,0) circle (7pt);};
 \end{tikzpicture}
 \end{Verbatim}
 
