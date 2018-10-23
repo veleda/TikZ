@@ -1,0 +1,62 @@
+\documentclass[12pt]{article}
+
+\usepackage{tikz}
+
+
+\begin{document}
+
+
+
+
+\begin{tikzpicture}
+
+\draw[red, thick, domain=0:1.5] plot (\x, {\x^2});
+
+\foreach \x in {0, 1, 2, 3, 4}
+	\draw (\x, 2pt) -- (\x, -2pt) node[below] {$\x$};
+\foreach \y in {0, 1, 2, 3, 4}
+	\draw (2pt, \y) -- (-2pt, \y) node[left] {$\y$};
+
+\end{tikzpicture}
+
+
+
+\newpage
+
+
+\tikzset {
+	kake/.style = {circle, white, font=\bfseries, draw=black, fill=black},
+	gulrot/.style = {circle, red, draw=red, very thick},
+	nnull/.style = {rectangle, draw=black, minimum width=0.3cm, minimum height=0.3cm}
+}
+
+
+\begin{tikzpicture}[level 2/.style={sibling distance=1cm}]
+
+\node[kake] {1}
+	child { node[gulrot] {2} 
+		child { node[gulrot] {6} }
+		child { node[kake] {7} }
+	} 
+	child { node[nnull] {} }
+;
+
+\end{tikzpicture}
+
+
+\newpage 
+
+
+\begin{tikzpicture}
+
+\node[draw=black, circle] (1) at (0,0) {1};
+
+\node[draw=black, circle] (2) at (0,-2) {2};
+
+\draw[draw=white] (1) -- node {$\vdots$} (2);
+\end{tikzpicture}
+
+
+\end{document}
+
+
